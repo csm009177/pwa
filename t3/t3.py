@@ -37,7 +37,7 @@ html_close = "</html>"
 
 html_content = doctype + html_open + head_open + title_tag + head_close + body_open + h1_tag + body_close + html_close
 
-html_file = open(html_file_name, mode["write"] , encoding=charset)
+html_file = open(html_file_name, mode["write"] , encoding=charset['utf8'])
 html_file.write(html_content)
 html_file.close()
 
