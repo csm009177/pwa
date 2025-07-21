@@ -23,6 +23,7 @@ function exampleOne() {
     }
 }
 
+
 function exampleTwo() {
     console.log("행성 번호 목록:");
     for(let i = 0; i < solarSystem.planets.length; i++) {
