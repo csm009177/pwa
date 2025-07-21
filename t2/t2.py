@@ -1,9 +1,7 @@
-import os
-
 name = "욱재"
 greeting = "안녕 " + name
 
-html_file_name = os.path.join(os.getcwd(), "t2", "t2.html")
+html_file_name = f"{__file__.split('/')[-1].split('.')[0]}.html"
 mode = {
     'read': 'r',
     'write': 'w',
