@@ -1,8 +1,15 @@
 name = "욱재"
 greeting = "안녕 " + name
 
-html_file_name = f"{__file__.split('/')[-1].split('.')[0]}.html"
-mode = {
+file_name = __file__
+print(f'file_name : {file_name} \n')
+remove_extension_file_name = str(file_name).split('.')
+print(f'remove_extension_file_name : \n {remove_extension_file_name} \n')
+
+
+
+html_file_name = __file__ + ".html"
+mode = { # 모드는 뭐다라고 지정하지 말고 여러가지 선택지를?
     'read': 'r',
     'write': 'w',
     'append': 'a',
@@ -15,6 +22,14 @@ mode = {
     'binary_read+write': 'rb+',
     'binary_write+read': 'wb+',
     'binary_append+read': 'ab+',
+}
+charset = {
+    'utf8': 'utf-8',
+    'utf16': 'utf-16',
+    'ascii': 'ascii',
+    'latin1': 'latin-1',
+    'cp949': 'cp949',
+    'euc_kr': 'euc-kr'
 }
 charset = "utf-8"
 
@@ -30,7 +45,7 @@ html_close = "</html>"
 
 html_content = doctype + html_open + head_open + title_tag + head_close + body_open + h1_tag + body_close + html_close
 
-html_file = open(html_file_name, mode["write"] , encoding=charset)
+html_file = open(html_file_name, mode['write'], encoding=charset)
 html_file.write(html_content)
 html_file.close()
 
