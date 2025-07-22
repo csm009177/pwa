@@ -9,27 +9,29 @@ const htmlElements = {
     zIndexes: [1, 10, 5, 2, 3, 1, 15, 8]
 };
 
-function exampleOne() {
+function exampleOne() { 
     console.log("모든 HTML 태그:");
     for(let i = 0; i < htmlElements.tags.length; i++) {
         console.log(htmlElements.tags[i]);
     }
 }
-
+// exampleOne()
 
 function exampleTwo() {
     console.log("요소 번호 목록:");
     for(let i = 0; i < htmlElements.tags.length; i++) {
         console.log(`${i + 1}번째: ${htmlElements.tags[i]}`);
-    }
+    } // 인덱스번호에 1을 더하면?
 }
+// exampleTwo()
 
 function exampleThree() {
     console.log("태그와 크기:");
     for(let i = 0; i < htmlElements.tags.length; i++) {
         console.log(`${htmlElements.tags[i]} - ${htmlElements.widths[i]}px`);
-    }
+    } // 태그에서 인덱스와 같은 인덱스를 크기에서 찾는다
 }
+// exampleThree()
 
 function exampleFour() {
     console.log("첫 4개 요소들:");
@@ -37,6 +39,7 @@ function exampleFour() {
         console.log(htmlElements.tags[i]);
     }
 }
+// exampleFour()
 
 function exampleFive() {
     console.log("나머지 요소들:");
@@ -44,13 +47,16 @@ function exampleFive() {
         console.log(htmlElements.tags[i]);
     }
 }
+// exampleFive()
 
 function exampleSix() {
     console.log("역순 태그:");
+		// 반대로 세아리려면 시작점과 끝점을 반대로 바꾸어야함
     for(let i = htmlElements.tags.length - 1; i >= 0; i--) {
         console.log(htmlElements.tags[i]);
     }
 }
+// exampleSix()
 
 function exampleSeven() {
     console.log("너비가 150px 이상인 요소들:");
@@ -64,6 +70,15 @@ function exampleSeven() {
         console.log(`${largeElements[i]} (${htmlElements.widths[i]}px)`);
     }
 }
+/** 해석 
+ * 새로운 비어있는 리스트를 만들고
+ * 150보다 큰 크기를 가지는 요소의 순서를 찾고
+ * 같은 순서를 가지는 요소를 태그에서 찾아서
+ * 새로운 리스트에 넣는다
+ * 완성된 리스트의 모든 요소를 반복문을 통해서
+ * 완성된 리스트의 길이 미만으로 출력한다
+ * **/
+// exampleSeven()
 
 function exampleEight() {
     console.log("첫 번째 block 요소:");
@@ -71,11 +86,13 @@ function exampleEight() {
     for(let i = 0; i < htmlElements.types.length; i++) {
         if(htmlElements.types[i] === "block") {
             found = htmlElements.tags[i];
+            console.log(found);
             break;
         }
     }
     console.log(found);
 }
+exampleEight()
 
 function exampleNine() {
     console.log("첫 번째 input 태그의 인덱스:");
