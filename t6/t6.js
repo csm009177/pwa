@@ -83,6 +83,7 @@ function exampleSeven() {
 function exampleEight() {
     console.log("첫 번째 block 요소:");
     let found = null;
+    console.log(found);
     for(let i = 0; i < htmlElements.types.length; i++) {
         if(htmlElements.types[i] === "block") {
             found = htmlElements.tags[i];
@@ -92,7 +93,16 @@ function exampleEight() {
     }
     console.log(found);
 }
-exampleEight()
+/**
+ * found라는 공간을 만들고 null을 넣어놓는다
+ * found는 다른 것을 넣지 않으면 null이 있을것이다
+ * htmlElements의 타입의 길이 직전까지 {}안이 실행된다
+ * htmlElements의 타입의 요소중에 인덱스+1번째가 "block"이면
+ * {}가 실행된다
+ * break를 만나면 if조건을 만족하는 최초의 인덱스에서 멈춘다
+ * found에는 htmlElements의 타입의 인덱스+1번째 것을 출력
+ */
+// exampleEight()
 
 function exampleNine() {
     console.log("첫 번째 input 태그의 인덱스:");
