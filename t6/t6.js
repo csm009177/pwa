@@ -16,6 +16,7 @@ function exampleOne() {
     }
 }
 
+
 function exampleTwo() {
     console.log("요소 번호 목록:");
     for(let i = 0; i < htmlElements.tags.length; i++) {
