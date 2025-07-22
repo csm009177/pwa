@@ -120,7 +120,10 @@ function 넓이가200이상인요소와인덱스번호가같은태그의요소�
 function 넓이가200이상인요소와인덱스번호를확인하고각키마다인덱스를비교하여같은것을출력(){
     for(let i=0; i<htmlElements.widths.length; i++){
         if(htmlElements.widths[i] <=200){
-            console.log('길이가' +htmlElements.widths[i] + '인')
+            console.log('길이가' +htmlElements.widths[i] + '인 =>');
+            for(let key in htmlElements){
+                console.log(htmlElements[key][i]);
+            }
         }
     }
 }
