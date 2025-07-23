@@ -9,11 +9,18 @@ const htmlData = {
     weights: [100, 200, 300, 400, 500, 600, 700, 800, 900]
 };
 
-class Element {
-    tag = "div";
-    color = "black";
-    size = 16;
-}
 
-const testElement = new Element();
-console.log(testElement);
+class H_휴먼 {
+    name = "성민";
+    age = 0;
+    address = "대전 서구 배재로";
+}
+// console.log("Human Data : ", new H_휴먼());
+
+class N_닝겐스 {
+    title = "otaku";
+    age = 35;
+    job = "자택경비원";
+}
+const callNingens = new N_닝겐스();
+// console.log("NIngens job : ", callNingens.job);
