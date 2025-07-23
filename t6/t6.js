@@ -110,11 +110,24 @@ function exampleNine() {
     for(let i = 0; i < htmlElements.tags.length; i++) {
         if(htmlElements.tags[i] === "input") {
             foundIndex = i;
-            break;
+            console.log(foundIndex)
+            // break;
         }
     }
     console.log(foundIndex);
 }
+/**
+ * foundIndex라는 공간을 만들고 -1을 넣어둔다
+ * foundIndex는 다른것을 넣지 않으면 -1이 있을것이다
+ * foundIndex는 htmlElements의 태그의 길이 직전까지 {}안이 실행된다
+ * foundIndex의 인덱스는 처음 값이 -1이므로
+ * htmlElements의 태그의 요소중에 인덱스+1번째가 "input"이면
+ * {}가 실행된다
+ * foundIndex에는 i가 들어간다
+ * 
+ */
+exampleNine()
+
 
 function exampleTen() {
     console.log("z-index 10 이상이 있나요?");
