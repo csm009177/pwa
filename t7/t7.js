@@ -315,7 +315,6 @@ function exampleFifteen() {
 }
 
 
-
 class Sidebar {
     tag = "aside";
     className = "sidebar";
