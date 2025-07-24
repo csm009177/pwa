@@ -22,14 +22,11 @@ import { Menu } from "./class/menu.js";
 // 인스턴스를 생성합니다
 const menu = new Menu();
 // Menu 클래스를 출력해봅니다
-console.log(menu);
+// console.log(menu);
 
 import { Oesick } from "./class/Oesick.js";
-// 인스턴스를 생성합니다
 const oesick = new Oesick();
-// Oesick 클래스를 출력해봅니다
-console.log(oesick);
-
+// console.log(oesick);
 
 class Restaurant {
   name = "맛있는 식당";
@@ -56,10 +53,27 @@ function exampleOne() {
   return average;
 }
 
+function 모든메뉴의칼로리를더해보기() {
+  // console.log("모든 메뉴의 칼로리 합계:");
+  let totalCalories = 0;
+  for (let i = 0; i < lunchData.calories.length; i++) {
+    totalCalories = totalCalories + lunchData.calories[i];
+  }
+  return totalCalories;
+}
+// console.log(모든메뉴의칼로리를더해보기())
+
 function exampleTwo() {
   const avgPrice = exampleOne();
   console.log(`평균 가격: ${avgPrice}원`);
 }
+
+function 모든메뉴의칼로리평균구하기() {
+  const 합계 = 모든메뉴의칼로리를더해보기();
+  const 평균 = 합계 / lunchData.calories.length;
+  console.log(평균);
+}
+// 모든메뉴의칼로리평균구하기();
 
 function exampleThree() {
   console.log("예산 내 첫 번째 메뉴 찾기:");
@@ -73,6 +87,17 @@ function exampleThree() {
     }
   }
 }
+
+function 만원으로먹을수있는메뉴찾기() {
+  const 만원 = 10000;
+  console.log("만원으로 먹을수 있는것은 : ");
+  for (let i = 0; i < lunchData.prices.length; i++) {
+    if (만원 >= lunchData.prices[i]) {
+      console.log(lunchData.menus[i]);
+    }
+  }
+}
+// 만원으로먹을수있는메뉴찾기()
 
 function exampleFour() {
   console.log("가장 비싼 메뉴 찾기:");
@@ -88,230 +113,126 @@ function exampleFour() {
 
   return `${expensiveMenu} (${maxPrice}원)`;
 }
+// console.log(exampleFour())
+
+function 만원이하제일싼메뉴() {
+  let 제일싼메뉴 = "";
+  let 제일싼가격 = 10000; // 만원을 초기값으로 설정
+
+  for (let i = 0; i < lunchData.prices.length; i++) {
+    // 현재 가격이 제일싼가격보다 싸면 업데이트
+    if (lunchData.prices[i] < 제일싼가격) {
+      제일싼가격 = lunchData.prices[i];
+      제일싼메뉴 = lunchData.menus[i];
+    }
+  }
+  return { 제일싼메뉴, 제일싼가격 };
+}
+// 만원이하제일싼메뉴();
 
 function exampleFive() {
   const result = exampleFour();
   console.log(`가장 비싼 메뉴: ${result}`);
 }
 
-function exampleSix() {
-  console.log("한식 메뉴 개수 세기:");
-  let count = 0;
-  for (let i = 0; i < lunchData.types.length; i++) {
+function 제일싼메뉴() {
+  const result = 만원이하제일싼메뉴();
+  console.log(result);
+}
+// 제일싼메뉴()
+
+function 메뉴개수세기() {
+  let counter = 0;
+  let gounter = 0;
+  let kounter = 0;
+  for (let i = 0; i < lunchData.menus.length; i++) {
+    counter = counter + 1;
+    gounter += 1;
+    kounter++;
+  }
+  return { counter, gounter, kounter };
+}
+// console.log(메뉴개수세기());
+
+// function 동양요리만출력하기(){
+//   let getherFood = [];
+//   for(let i=0; i<lunchData.menus.length; i++){
+//     if(lunchData.types === '한식' || lunchData.types === '일식' || lunchData.types === '중식'){
+//       getherFood = lunchData.menus[i];
+//     }
+//   }
+//   return getherFood;
+// }
+// console.log(동양요리만출력하기())
+
+function 동양요리만출력하기() {
+  let getherFood = [];
+  console.log("동양 요리 목록:"); // 출력임을 명확히 알리는 메시지 추가
+  for (let i = 0; i < lunchData.menus.length; i++) {
+    // 각 메뉴의 타입을 확인하여 동양 요리(한식, 일식, 중식)인지 검사합니다.
+    if (
+      lunchData.types[i] === "한식" ||
+      lunchData.types[i] === "일식" ||
+      lunchData.types[i] === "중식"
+    ) {
+      // 동양 요리인 경우, 해당 메뉴 이름을 콘솔에 바로 출력합니다.
+      getherFood.push(lunchData.menus[i]);
+    }
+  }
+  return getherFood;
+}
+// console.log(동양요리만출력하기());
+
+function 요리별맵기출력하기() {
+  for (let i = 0; i < lunchData.menus.length; i++) {
+    console.log(lunchData.menus[i] + "의 맵기 : " + lunchData.spiciness[i]);
+  }
+}
+// 요리별맵기출력하기();
+
+function 요리타입별맵기평균출력하기() {
+  let 한식맵기합 = 0;
+  let 한식개수 = 0;
+  let 양식맵기합 = 0;
+  let 양식개수 = 0;
+  let 일식맵기합 = 0;
+  let 일식개수 = 0;
+  let 중식맵기합 = 0;
+  let 중식개수 = 0;
+
+  for (let i = 0; i < lunchData.menus.length; i++) {
     if (lunchData.types[i] === "한식") {
-      count = count + 1;
-    }
-  }
-  return count;
-}
-
-function exampleSeven() {
-  const koreanCount = exampleSix();
-  console.log(`한식 메뉴: ${koreanCount}개`);
-}
-
-function exampleEight() {
-  console.log("맵지 않은 첫 번째 메뉴:");
-  for (let i = 0; i < lunchData.menus.length; i++) {
-    if (lunchData.spiciness[i] === 0) {
-      console.log(
-        `${lunchData.menus[i]} (매운맛 ${lunchData.spiciness[i]}단계)`
-      );
-      break;
-    }
-  }
-}
-
-function exampleNine() {
-  console.log("가장 인기 있는 메뉴:");
-  let maxPopularity = 0;
-  let popularMenu = "";
-
-  for (let i = 0; i < lunchData.menus.length; i++) {
-    if (lunchData.popularity[i] > maxPopularity) {
-      maxPopularity = lunchData.popularity[i];
-      popularMenu = lunchData.menus[i];
+      한식맵기합 += lunchData.spiciness[i];
+      한식개수++;
+    } else if (lunchData.types[i] === "양식") { // else if를 사용하여 중복 계산 방지
+      양식맵기합 += lunchData.spiciness[i];
+      양식개수++;
+    } else if (lunchData.types[i] === "일식") { // else if를 사용하여 중복 계산 방지
+      일식맵기합 += lunchData.spiciness[i];
+      일식개수++;
+    } else if (lunchData.types[i] === "중식") { // else if를 사용하여 중복 계산 방지
+      중식맵기합 += lunchData.spiciness[i];
+      중식개수++;
     }
   }
 
-  return popularMenu;
+  // 각 타입별 평균 계산 (0으로 나누기 방지)
+  const avg한식 = 한식개수 > 0 ? 한식맵기합 / 한식개수 : 0;
+  const avg양식 = 양식개수 > 0 ? 양식맵기합 / 양식개수 : 0;
+  const avg일식 = 일식개수 > 0 ? 일식맵기합 / 일식개수 : 0;
+  const avg중식 = 중식개수 > 0 ? 중식맵기합 / 중식개수 : 0;
+
+  // 객체 형태로 모든 평균값 반환
+  return {
+    한식평균맵기: avg한식,
+    양식평균맵기: avg양식,
+    일식평균맵기: avg일식,
+    중식평균맵기: avg중식,
+  };
 }
 
-function exampleTen() {
-  const bestMenu = exampleNine();
-  console.log(`인기 1위: ${bestMenu}`);
-}
+// console.log(요리타입별맵기평균출력하기());
 
-function exampleEleven() {
-  console.log("15분 이내 조리 가능한 첫 메뉴:");
-  for (let i = 0; i < lunchData.menus.length; i++) {
-    if (lunchData.cookTime[i] <= 15) {
-      console.log(`${lunchData.menus[i]} (${lunchData.cookTime[i]}분)`);
-      break;
-    }
-  }
-}
-
-function exampleTwelve() {
-  console.log("총 칼로리 계산:");
-  let totalCalories = 0;
-  for (let i = 0; i < lunchData.calories.length; i++) {
-    totalCalories = totalCalories + lunchData.calories[i];
-  }
-  return totalCalories;
-}
-
-function exampleThirteen() {
-  const total = exampleTwelve();
-  console.log(`전체 메뉴 총 칼로리: ${total}kcal`);
-}
-
-function exampleFourteen() {
-  console.log("1만원 이하 메뉴 개수:");
-  let count = 0;
-  for (let i = 0; i < lunchData.prices.length; i++) {
-    if (lunchData.prices[i] <= 10000) {
-      count = count + 1;
-    }
-  }
-  return count;
-}
-
-function exampleFifteen() {
-  const affordableCount = exampleFourteen();
-  console.log(`1만원 이하 메뉴: ${affordableCount}개`);
-}
-
-function exampleSixteen() {
-  console.log("중식 중 첫 번째 메뉴:");
-  for (let i = 0; i < lunchData.types.length; i++) {
-    if (lunchData.types[i] === "중식") {
-      console.log(`${lunchData.menus[i]} (${lunchData.types[i]})`);
-      break;
-    }
-  }
-}
-
-function exampleSeventeen() {
-  console.log("가장 낮은 칼로리 메뉴:");
-  let minCalories = 1000;
-  let healthyMenu = "";
-
-  for (let i = 0; i < lunchData.menus.length; i++) {
-    if (lunchData.calories[i] < minCalories) {
-      minCalories = lunchData.calories[i];
-      healthyMenu = lunchData.menus[i];
-    }
-  }
-
-  return `${healthyMenu} (${minCalories}kcal)`;
-}
-
-function exampleEighteen() {
-  const lightMenu = exampleSeventeen();
-  console.log(`저칼로리 메뉴: ${lightMenu}`);
-}
-
-function exampleNineteen() {
-  console.log("매운맛 2단계 이상 첫 메뉴:");
-  for (let i = 0; i < lunchData.menus.length; i++) {
-    if (lunchData.spiciness[i] >= 2) {
-      console.log(
-        `${lunchData.menus[i]} (매운맛 ${lunchData.spiciness[i]}단계)`
-      );
-      break;
-    }
-  }
-}
-
-function exampleTwenty() {
-  console.log("가장 빠른 조리시간:");
-  let minTime = 100;
-  for (let i = 0; i < lunchData.cookTime.length; i++) {
-    if (lunchData.cookTime[i] < minTime) {
-      minTime = lunchData.cookTime[i];
-    }
-  }
-  return minTime;
-}
-
-function exampleTwentyOne() {
-  const fastTime = exampleTwenty();
-  console.log(`최단 조리시간: ${fastTime}분`);
-}
-
-function exampleTwentyTwo() {
-  console.log("양식 메뉴 첫 번째:");
-  for (let i = 0; i < lunchData.types.length; i++) {
-    if (lunchData.types[i] === "양식") {
-      console.log(`${lunchData.menus[i]} - ${lunchData.prices[i]}원`);
-      break;
-    }
-  }
-}
-
-function exampleTwentyThree() {
-  console.log("평균 조리시간 계산:");
-  let sum = 0;
-  for (let i = 0; i < lunchData.cookTime.length; i++) {
-    sum = sum + lunchData.cookTime[i];
-  }
-  return sum / lunchData.cookTime.length;
-}
-
-function exampleTwentyFour() {
-  const avgTime = exampleTwentyThree();
-  console.log(`평균 조리시간: ${avgTime}분`);
-}
-
-function exampleTwentyFive() {
-  console.log("인기도 80점 이상 첫 메뉴:");
-  for (let i = 0; i < lunchData.popularity.length; i++) {
-    if (lunchData.popularity[i] >= 80) {
-      console.log(
-        `${lunchData.menus[i]} (인기도 ${lunchData.popularity[i]}점)`
-      );
-      break;
-    }
-  }
-}
-
-function exampleTwentySix() {
-  console.log("500kcal 이상 메뉴 개수:");
-  let count = 0;
-  for (let i = 0; i < lunchData.calories.length; i++) {
-    if (lunchData.calories[i] >= 500) {
-      count = count + 1;
-    }
-  }
-  return count;
-}
-
-function exampleTwentySeven() {
-  const highCalCount = exampleTwentySix();
-  console.log(`고칼로리 메뉴: ${highCalCount}개`);
-}
-
-function exampleTwentyEight() {
-  console.log("일식 첫 번째 메뉴 가격:");
-  for (let i = 0; i < lunchData.types.length; i++) {
-    if (lunchData.types[i] === "일식") {
-      return lunchData.prices[i];
-    }
-  }
-}
-
-function exampleTwentyNine() {
-  const japanesePrice = exampleTwentyEight();
-  console.log(`일식 메뉴 가격: ${japanesePrice}원`);
-}
-
-function exampleThirty() {
-  console.log("20분 이상 조리시간 첫 메뉴:");
-  for (let i = 0; i < lunchData.cookTime.length; i++) {
-    if (lunchData.cookTime[i] >= 20) {
-      console.log(`${lunchData.menus[i]} (${lunchData.cookTime[i]}분 소요)`);
-      break;
-    }
-  }
+function 요리타입별맵기평균출력하기2() {
+  
 }
