@@ -234,5 +234,35 @@ function 요리타입별맵기평균출력하기() {
 // console.log(요리타입별맵기평균출력하기());
 
 function 요리타입별맵기평균출력하기2() {
-  
+  const 요리별정보모음 = {
+    한식 : {맵기합:0, 개수:0},
+    양식 : {맵기합:0, 개수:0},
+    일식 : {맵기합:0, 개수:0},
+    중식 : {맵기합:0, 개수:0}
+  };
+
+  for(let i=0; i<lunchData.menus.length; i++){
+    if(lunchData.types[i] === '한식'){
+      요리별정보모음.한식.맵기합 += lunchData.spiciness[i];
+      요리별정보모음.한식.개수++;
+    }
+    else if(lunchData.types[i] === '양식'){
+      요리별정보모음.양식.맵기합 += lunchData.spiciness[i];
+      요리별정보모음.양식.개수++;
+    }
+    else if(lunchData.types[i] === '일식'){
+      요리별정보모음.일식.맵기합 += lunchData.spiciness[i];
+      요리별정보모음.일식.개수++;
+    }
+    else if(lunchData.types[i] === '중식'){
+      요리별정보모음.중식.맵기합 += lunchData.spiciness[i];
+      요리별정보모음.중식.개수++;
+    }    
+  }
+  const 한식맵기평균 = 요리별정보모음.한식.맵기합/요리별정보모음.한식.개수;
+  const 양식맵기평균 = 요리별정보모음.양식.맵기합/요리별정보모음.양식.개수;
+  const 일식맵기평균 = 요리별정보모음.일식.맵기합/요리별정보모음.일식.개수;
+  const 중식맵기평균 = 요리별정보모음.중식.맵기합/요리별정보모음.중식.개수;
+  return {한식맵기평균, 양식맵기평균, 일식맵기평균, 중식맵기평균};
 }
+console.log(요리타입별맵기평균출력하기2());
