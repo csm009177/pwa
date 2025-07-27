@@ -265,4 +265,20 @@ function 요리타입별맵기평균출력하기2() {
   const 중식맵기평균 = 요리별정보모음.중식.맵기합/요리별정보모음.중식.개수;
   return {한식맵기평균, 양식맵기평균, 일식맵기평균, 중식맵기평균};
 }
-console.log(요리타입별맵기평균출력하기2());
+// console.log(요리타입별맵기평균출력하기2());
+
+function 한식첫번째매뉴(){
+  for(let i=0; i<lunchData.menus.length; i++){
+    if(lunchData.types[i] === '한식'){
+      console.log(lunchData.menus[i]);
+      break;
+    }
+  }
+}
+// 한식첫번째매뉴();
+
+function 요리타입별첫번째매뉴() {
+  for(let i=0; lunchData.menus.length; i++){
+    
+  }
+}
