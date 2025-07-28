@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .버튼박스 {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .버튼박스 .버튼 { /* 클래스 이름 사용 */
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
+        }
+
+        .버튼박스 .버튼:hover { /* 클래스 이름 사용 */
+            background-color: #0056b3;
+        }
+
+        .박스 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 120px; /* 박스가 비어있을 때도 영역을 표시 */
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .박스 div {
+            border: 1px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            box-sizing: border-box; /* 패딩과 보더가 width/height에 포함되도록 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="버튼박스"></div>
+    <div class="박스"></div>
+    <script>
+        // 이 부분을 주목하세요! 박스 요소를 전역 변수로 선언합니다.
+        // 이렇게 하면 모든 함수가 '박스'에 접근할 수 있습니다.
+        const 박스 = document.querySelector(".박스");
+
+        // --------------------------------
+        // -----------함수 작성부-----------
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const 버튼박스 = document.querySelector(".버튼박스");
+            
+            // 필터링에 사용할 정규식 정의
+            // 제외에 쓸 정규식
+            const excludePattern = /[^(가-힣)|^(0-9)]/;
+
+
+            const 함수이름들 = Object.getOwnPropertyNames(window).filter(name => {
+                return typeof window[name] === 'function' && // 함수인지 확인
+                       !name.startsWith('_') && // 내부 함수 제외
+                       !excludePattern.test(name); // 제외 패턴에 맞지 않는지 확인
+            });
+
+            함수이름들.forEach(함수이름 => {
+                const 버튼 = document.createElement('button');
+                버튼.textContent = 함수이름;
+                버튼.className = "버튼"; // 버튼에 클래스 추가
+
+                버튼.onclick = () => window[함수이름](); // 클릭 이벤트 설정
+                버튼박스.appendChild(버튼); // 버튼을 버튼박스에 추가
+            });
+        });
+
+        function 초기화하기() {
+            박스.innerHTML = "";
+            console.log("초기화하기 함수 실행됨!");
+        }
+
+        // 박스안에 div 추가하기
+        function 박스안에박스추가하기() {
+            const 안에있는박스 = document.createElement("div");
+            안에있는박스.style.backgroundColor = "green";
+            안에있는박스.style.width = "100px";
+            안에있는박스.style.height = "100px";
+            안에있는박스.textContent = "새로운박스";
+            박스.appendChild(안에있는박스);
+            console.log("박스안에박스추가하기 함수 실행됨!");
+        }
+
+        function 박스안에있는박스에번호주기1() {
+            for (let i = 0; i < 박스.children.length; i++) {
+                박스.children[i].textContent = `새로운박스 ${i + 1}`;
+            }
+            console.log("박스안에있는박스에번호주기1 함수 실행됨!");
+        }
+
+        function 박스안에있는박스에번호주기2() {
+            for (let i = 0; i < 박스.children.length; i++) {
+                if (박스.children[i].textContent.startsWith("새로운박스") && !박스.children[i].textContent.includes(i.toString())) {
+                    박스.children[i].textContent += " " + i;
+                }
+            }
+            console.log("박스안에있는박스에번호주기2 함수 실행됨!");
+        }
+
+        function 박스안에있는박스에색갈파란색으로변경하기() {
+            for (let i = 0; i < 박스.children.length; i++) {
+                // rgba를 활용해서 색갈바꾸기
+                박스.children[i].style.backgroundColor = 'rgba(0, 0, 255, 0.5)';
+            }
+            console.log("박스안에있는박스에색갈파란색으로변경하기 함수 실행됨!");
+        }
+
+        function 박스안에있는박스의색갈리스트안의색갈순으로바꿔보기() {
+            const colorsList = [
+                'red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink', 'brown', 'black', 'white'
+            ];
+            for (let i = 0; i < 박스.children.length; i++) {
+                박스.children[i].style.backgroundColor = colorsList[i % colorsList.length]; // Use modulo to loop through colors
+            }
+            console.log("박스안에있는박스의색갈리스트안의색갈순으로바꿔보기 함수 실행됨!");
+        }
+
+        function 박스안에박스의왼쪽여백을추가하기() {
+          for(let i=0; i<박스.children.length; i++){
+            박스.children[i].style.marginLeft = "5px"
+          }
+        }
+
+        function 박스안에박스의왼쪽여백을증가하기( ) {
+          for(let i=0; i<박스.children.length; i++){
+            const 이전왼쪽여백 = 박스.children[i].style.marginLeft;
+            const 왼쪽여백값 = parseInt(이전왼쪽여백) || 0; // 이전 왼쪽 여백 값 가져오기
+            박스.children[i].style.marginLeft = (왼쪽여백값 + 5) + "px"; // 5px 증가
+          }
+        }
+
+        function 박스안에박스에태두리만들기() {
+          for(let i=0; 박스.children.length; i++){
+            박스.children[i].style.border = "5px solid"; // 박스에 검은색 테두리 추가
+          }
+        }
+
+        
+ 
+    </script>
+</body>
+
+</html>
