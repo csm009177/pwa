@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mriya</title>
+    <title>항성계</title>
     <style>
         * {
             margin: 0;
@@ -12,18 +12,79 @@
             box-sizing: border-box;
         }
 
-        .button-base {
+        .버튼-기본 {
             border: none;
             font-family: inherit;
         }
+
+
     </style>
 </head>
 
 <body>
-    <div id="root"></div>
-    <script></script>
+    <div id="뿌리에서시작"></div>
+    <script>
+        class 행성 {
+            constructor(이름인자, 거리인자, 설명인자) {
+                this.이름 = 이름인자;
+                this.거리 = 거리인자;
+                this.설명 = 설명인자;
+            };
+        }
+        console.log("행성 클래스 정의 완료");
+        class 항성계 {
+            constructor(이름인자, 행성이름인자) {
+                this.이름 = 이름인자;
+                this.행성이름 = 행성이름인자;
+                this.행성들의배열 = [];
+            }
+        }
+        console.log("항성계 클래스 정의 완료");
+
+        const 태양계 = new 항성계("태양계", "태양");
+        console.log("태양계 인스턴스 생성 완료 : ", 태양계.이름);
+
+        const 행성데이터 = [
+            ["수성", "5만 킬로미터", "태양과 가장 가까운 행성"],
+            ["금성", "10만 킬로미터", "지구와 비슷한 크기의 행성"],
+            ["지구", "15만 킬로미터", "인류가 거주하는 행성"],
+            ["화성", "20만 킬로미터", "붉은 행성으로 알려진 행성"],
+            ["목성", "30만 킬로미터", "태양계에서 가장 큰 행성"],
+            ["토성", "40만 킬로미터", "고리로 유명한 행성"],
+            ["천왕성", "50만 킬로미터", "축이 기울어진 행성"],
+            ["해왕성", "60만 킬로미터", "푸른색의 아름다운 행성"]
+        ]
+        console.log("행성 데이터 배열 생성 완료");
+
+        for(let i=0; i<행성데이터.length; i++){
+            const 최근행성데이터 = 행성데이터[i];
+            const 새로운행성 = new 행성 (최근행성데이터[0], 최근행성데이터[1], 최근행성데이터[2]);
+            태양계.행성들의배열[i] = 새로운행성;
+        }
+        console.log(태양계);
+
+        const 문서 = document
+        const 뿌리 = 문서.getElementById("뿌리에서시작");
+        console.dir(뿌리);
+        
+        let 다크모드 = true;
+        console.log('상태변수 초기화 완료 : ', 다크모드);
+
+        
+        function 행성들을태그요소로가공해서만들기(){
+            for(let i=0; i<태양계.행성들의배열.length; i++) {
+                const 행성이름 = 태양계.행성들의배열[i].이름;
+                console.log(행성이름);
+                
+
+            };
+           
 
 
+        }
+        행성들을태그요소로가공해서만들기();
+
+    </script>
 </body>
 
 </html>
