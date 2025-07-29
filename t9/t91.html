@@ -81,7 +81,7 @@
 
             const 함수이름들 = Object.getOwnPropertyNames(window).filter(name => {
                 return typeof window[name] === 'function' && // 함수인지 확인
-                       !name.startsWith('_') && // 내부 함수 제외
+                       !name.startsWith('_') && // 이름이 _로시작하는 함수 (내부 함수 제외하기)
                        !excludePattern.test(name); // 제외 패턴에 맞지 않는지 확인
             });
 
