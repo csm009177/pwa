@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조직도</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        const root = document.getElementById('root');
+        console.log('조직도를 알아보시오');
+        class 조직원 {
+            constructor (이름인자, 특기인자, 조직명인자) {
+                this.이름 = 이름인자;
+                this.특기 = 특기인자;
+                this.조직명 = 조직명인자;
+            }
+        }
+        class 조직 {
+            constructor(조직명인자, 구역인자){
+                this.조직명 = 조직명인자;
+                this.구역 = 구역인자;
+                this.조직원들 = [];
+            }
+        }
+
+        const 조직원목록 = [
+            ['양갱이', '신중권', '배고파'],
+            ['멀대',   '양념권', '먹고파'],
+            ['해롱이', '짜장권', '먹고파'],
+            ['대롱이', '탕수권', '배고파'],
+            ['헐랭이', '육수권', '국밥파'],
+        ]
+
+        const 조직목록 = [
+            ['배고파', '가오동'],
+            ['먹고파', '가오동'],
+            ['국밥파', '양동'],
+        ]
+
+        // 조직원목록
+        for(let i=0; i<조직원목록.length; i++){
+            const 최근조직원목록 = 조직원목록[i];
+            if(최근조직원목록[2] === ''){
+                const 새조직원목록 = new 조직원(최근조직원목록[0],최근조직원목록[1],최근조직원목록[2]);
+
+            }
+        }
+
+    </script>
+</body>
+</html>
