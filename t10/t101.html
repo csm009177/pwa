@@ -10,19 +10,72 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            text-align: center;
+            font-family: 'Malgun Gothic', sans-serif;
         }
 
-        .버튼-기본 {
-            border: none;
-            font-family: inherit;
-        }
+        .디스플레이.블락 { display: block; }
+        .텍스트중앙 { text-align: center; }
+        .컨텐츠중앙 { justify-content: center;}
+        
+        .글자크기기본 { font-size: 16px; }
+        .글자크기크게 { font-size: 1.5em; }
+        .글자두께굵게 { font-weight: bold; }
+
+        .넓이.전체 { width :100%;}
+        .넓이.쓰리쿼터 { width: 75%; }
+        .넓이.하프 { width: 50%; }
+        .넓이.쿼터 { width: 25%; }
+        .넓이.최대500 { max-width: 500px; }
+
+        .높이.전체 { height: 100%; }
+        .높이.쓰리쿼터 { height: 75%; }
+        .높이.하프 { height: 50%; }
+        .높이.쿼터 { height: 25%; }
+
+        .배경색.하얀색 { background-color: #ffffff;}
+        .배경색.회색연한 { background-color: #f0f0f0; }
+        .배경색.어두운색 { background-color: #1a1a1a; }
+        .배경색.회색진한 { background-color: #2d2d2d; }
+        .배경색.회색더진 { background-color: #333; }
+
+        .글색상.하얀색 { color: #ffffff; }
+        .글색상.검정색 { color: #000000; }
+        .글색상.회색 { color: #555; }
+        .글색상.회색진한 { color: #333; }
+        .글색상.회색더진 { color: #222; }
+
+
+        .마진.자동 { margin: 0 auto; }
+        .마진.위.픽셀30 { margin-top: 30px; }
+        .마진.위.픽셀20 { margin-top: 20px; }
+        .마진.위.픽셀10 { margin-top: 10px; }
+
+        .마진.아래.픽셀30 { margin-bottom: 30px; }
+        .마진.아래.픽셀20 { margin-bottom: 20px; }
+        .마진.아래.픽셀10 { margin-bottom: 10px; }
+
+        .마진.좌.필셀30 { margin-left: 30px; }
+        .마진.좌.픽셀20 { margin-left: 20px; }
+        .마진.좌.픽셀10 { margin-left: 10px; }
+
+        .패딩.좌.픽셀30 { padding-left: 30px; }
+        .패딩.좌.픽셀20 { padding-left: 20px; }
+        .패딩.좌.픽셀10 { padding-left: 10px; }
+
+        .태두리.없음 { border: none; }
+        .폰트상속{ font-family: inherit; }
 
 
     </style>
 </head>
 
 <body>
-    <div id="뿌리에서시작"></div>
+    <div id="뿌리에서시작" class="배경색 하얀색 글색상 검정색 넓이 전체 높이 전체 텍스트중앙">
+        <div class="텍스트중앙">태양계 행성들</div>
+        <button class="기본버튼 넓이 하프 높이 쿼터 텍스트중앙 글색상 검은색 태두리 없음 폰트상속">다크모드</button>
+        <div class="행성목록 넓이 쓰리쿼터 마진 자동 "></div>
+    </div>
     <script>
         class 행성 {
             constructor(이름인자, 거리인자, 설명인자) {
@@ -56,33 +109,72 @@
         ]
         console.log("행성 데이터 배열 생성 완료");
 
-        for(let i=0; i<행성데이터.length; i++){
+        for (let i = 0; i < 행성데이터.length; i++) {
             const 최근행성데이터 = 행성데이터[i];
-            const 새로운행성 = new 행성 (최근행성데이터[0], 최근행성데이터[1], 최근행성데이터[2]);
+            const 새로운행성 = new 행성(최근행성데이터[0], 최근행성데이터[1], 최근행성데이터[2]);
             태양계.행성들의배열[i] = 새로운행성;
+            console.log("행성 생성 :", 새로운행성.이름);
         }
         console.log(태양계);
 
-        const 문서 = document
-        const 뿌리 = 문서.getElementById("뿌리에서시작");
-        console.dir(뿌리);
-        
-        let 다크모드 = true;
+        const 문서 = document;
+        const 뿌리 = document.getElementById("뿌리에서시작");
+        const 제목 = 뿌리.children[0];
+        const 다크모드버튼 = 뿌리.children[1];
+        const 행성목록 = 뿌리.children[2];
+
+        let 다크모드 = false;
         console.log('상태변수 초기화 완료 : ', 다크모드);
 
-        
-        function 행성들을태그요소로가공해서만들기(){
-            for(let i=0; i<태양계.행성들의배열.length; i++) {
-                const 행성이름 = 태양계.행성들의배열[i].이름;
-                console.log(행성이름);
-                
+        function 행성요소생성하기() {
+            console.log("태양계", 태양계)
 
-            };
-           
+            for (let i = 0; i < 태양계.행성들의배열.length; i++) {
+                const 행성 = 태양계.행성들의배열[i];
 
+                const 행성요소 = 문서.createElement('div');
+                행성요소.className = "행성요소";
+                // 스타일 적용
 
+                const 행성이름요소 = 문서.createElement('div');
+                행성이름요소.className = "행성이름요소";
+                행성이름요소.textContent = 행성.이름;
+
+                const 행성거리요소 = 문서.createElement('div');
+                행성거리요소.className = "행성거리요소";
+                행성거리요소.textContent = 행성.거리;
+
+                const 행성설명요소 = 문서.createElement('div');
+                행성설명요소.className = "행성설명요소";
+                행성설명요소.textContent = 행성.설명;
+
+                행성요소.appendChild(행성이름요소);
+                행성요소.appendChild(행성거리요소);
+                행성요소.appendChild(행성설명요소);
+
+                행성목록.appendChild(행성요소); // 문자열이 아닌 DOM 요소 전달
+
+                console.log("행성 : ", 행성);
+            }
         }
-        행성들을태그요소로가공해서만들기();
+        행성요소생성하기();
+
+        다크모드버튼.addEventListener("click", function() {
+            console.log('다크모드버튼 클릭됨');
+            if (다크모드 === true ) {
+                console.log("다크모드에서 라이트모드로 변경 시작");
+                뿌리.className = "배경색 하얀색 글색상 검정색 넓이 전체 높이 전체 텍스트중앙";
+                다크모드 = false;
+                다크모드버튼.textContent = "다크모드";
+                console.log("라이트모드로 변경 완료");
+            } else {
+                console.log("라이트모드에서 다크모드로 변경 시작");
+                뿌리.className = "배경색 어두운색 글색상 하얀색 넓이 전체 높이 전체 텍스트중앙";
+                다크모드 = true;
+                다크모드버튼.textContent = "라이트모드";
+                console.log("다크모드로 변경 완료");
+            }
+        });
 
     </script>
 </body>

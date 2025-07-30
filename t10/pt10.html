@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>항성계</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            .font-family-malgun-gothic { font-family: 'Malgun Gothic', sans-serif; }
+            .padding-20 { padding: 20px; }
+            .padding-15 { padding: 15px; }
+            .padding-10-20 { padding: 10px 20px; }
+            .margin-0-auto { margin: 0 auto; }
+            .margin-bottom-30 { margin-bottom: 30px; }
+            .margin-bottom-20 { margin-bottom: 20px; }
+            .margin-bottom-10 { margin-bottom: 10px; }
+            .margin-bottom-5 { margin-bottom: 5px; }
+            
+            .max-width-800 { max-width: 800px; }
+            .width-full { width: 100%; }
+            .display-block { display: block; }
+            
+            .text-align-center { text-align: center; }
+            .font-size-large { font-size: 1.5em; }
+            .font-size-base { font-size: 16px; }
+            .font-weight-bold { font-weight: bold; }
+            
+            .background-color-white { background-color: #ffffff; }
+            .background-color-gray-light { background-color: #f0f0f0; }
+            .background-color-dark { background-color: #1a1a1a; }
+            .background-color-gray-dark { background-color: #2d2d2d; }
+            .background-color-gray-darker { background-color: #333; }
+            
+            .text-color-black { color: #000000; }
+            .text-color-white { color: #ffffff; }
+            
+            .border-2-solid { border: 2px solid; }
+            .border-color-gray { border-color: #ddd; }
+            .border-color-gray-dark { border-color: #555; }
+            
+            .cursor-pointer { cursor: pointer; }
+            .transition-all-ease { transition: all 0.3s ease; }
+            
+            .button-base {
+                border: none;
+                font-family: inherit;
+            }
+        </style>
+    </head>
+    <body id="앱" class="font-family-malgun-gothic padding-20 transition-all-ease background-color-white text-color-black">
+        <div id="뿌리" class="max-width-800 margin-0-auto">
+            <h1 class="text-align-center margin-bottom-30">태양계 행성들</h1>
+            <button id="다크모드버튼" class="display-block margin-0-auto margin-bottom-30 padding-10-20 font-size-base background-color-gray-light text-color-black cursor-pointer button-base">다크 모드</button>
+            <div id="행성목록"></div>
+        </div>
+        <script>
+            class 행성 {
+                constructor(이름, 거리, 설명) {
+                    this.이름 = 이름;
+                    this.거리 = 거리;
+                    this.설명 = 설명;
+                }
+            }
+            class 항성계 {
+                constructor(이름, 항성) {
+                    this.이름 = 이름;
+                    this.항성 = 항성;
+                    this.행성들 = [];
+                }
+            }
+
+            const 태양계 = new 항성계("태양계", "태양");
+            const 행성데이터 = [
+                ["수성", "5만 킬로미터", "태양과 가장 가까운 행성"],
+                ["금성", "10만 킬로미터", "지구와 비슷한 크기의 행성"],
+                ["지구", "15만 킬로미터", "인류가 거주하는 행성"],
+                ["화성", "20만 킬로미터", "붉은 행성으로 알려진 행성"],
+                ["목성", "30만 킬로미터", "태양계에서 가장 큰 행성"],
+                ["토성", "40만 킬로미터", "고리로 유명한 행성"],
+                ["천왕성", "50만 킬로미터", "축이 기울어진 행성"],
+                ["해왕성", "60만 킬로미터", "푸른색의 아름다운 행성"]
+            ];
+            for (let i = 0; i < 행성데이터.length; i++) {
+                const [이름, 거리, 설명] = 행성데이터[i];
+                태양계.행성들.push(new 행성(이름, 거리, 설명));
+            }
+
+            const 앱 = document.getElementById("앱");
+            const 뿌리 = document.getElementById("뿌리");
+            const 다크모드버튼 = document.getElementById("다크모드버튼");
+            const 행성목록 = document.getElementById("행성목록");
+
+            let 다크모드 = false;
+
+            function 행성요소생성하기() {
+                행성목록.innerHTML = "";
+                for (let i = 0; i < 태양계.행성들.length; i++) {
+                    const 행성 = 태양계.행성들[i];
+                    const 행성요소 = document.createElement("div");
+                    행성요소.className = "planet margin-bottom-20 padding-15 border-2-solid border-color-gray background-color-white text-color-black";
+                    const 이름요소 = document.createElement("div");
+                    이름요소.className = "planet-name font-size-large font-weight-bold margin-bottom-10";
+                    이름요소.textContent = 행성.이름;
+                    const 거리요소 = document.createElement("div");
+                    거리요소.className = "planet-info margin-bottom-5";
+                    거리요소.textContent = "거리: " + 행성.거리;
+                    const 설명요소 = document.createElement("div");
+                    설명요소.className = "planet-info";
+                    설명요소.textContent = 행성.설명;
+                    행성요소.appendChild(이름요소);
+                    행성요소.appendChild(거리요소);
+                    행성요소.appendChild(설명요소);
+                    행성목록.appendChild(행성요소);
+                }
+            }
+
+            행성요소생성하기();
+
+            다크모드버튼.addEventListener("click", function () {
+                다크모드 = !다크모드;
+                if (다크모드) {
+                    앱.className = "font-family-malgun-gothic padding-20 transition-all-ease background-color-dark text-color-white";
+                    다크모드버튼.className = "display-block margin-0-auto margin-bottom-30 padding-10-20 font-size-base background-color-gray-darker text-color-white cursor-pointer button-base";
+                    다크모드버튼.textContent = "라이트 모드";
+                    for (let i = 0; i < 행성목록.children.length; i++) {
+                        행성목록.children[i].className = "planet margin-bottom-20 padding-15 border-2-solid border-color-gray-dark background-color-gray-dark text-color-white";
+                    }
+                } else {
+                    앱.className = "font-family-malgun-gothic padding-20 transition-all-ease background-color-white text-color-black";
+                    다크모드버튼.className = "display-block margin-0-auto margin-bottom-30 padding-10-20 font-size-base background-color-gray-light text-color-black cursor-pointer button-base";
+                    다크모드버튼.textContent = "다크 모드";
+                    for (let i = 0; i < 행성목록.children.length; i++) {
+                        행성목록.children[i].className = "planet margin-bottom-20 padding-15 border-2-solid border-color-gray background-color-white text-color-black";
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
