@@ -1,25 +1,13 @@
 const daejeonLine1 = {
   stations: [
-    "판암",
-    "신흥",
-    "대동",
-    "대전역",
-    "중앙로",
-    "중구청",
-    "서대전네거리",
-    "오룡",
-    "용문",
-    "탄방",
-    "시청",
-    "정부청사",
-    "갈마",
-    "월평",
-    "갑천",
+    "판암", "신흥", "대동", "대전역", "중앙로", "중구청", "서대전네거리", "오룡",
+    "용문", "탄방", "시청", "정부청사", "갈마", "월평", "갑천"
   ],
   fare: 1400,
   openYear: 2006,
 };
 
+// 역 순회하며 순번과 함께 출력
 function exampleOne() {
   function visitStations(stations, callback) {
     for (let i = 0; i < stations.length; i++) {
@@ -32,6 +20,7 @@ function exampleOne() {
   });
 }
 
+// 2글자 이하 역명을 찾아서 출력
 function exampleTwo() {
   function findStations(stations, callback) {
     let result = [];
@@ -53,6 +42,7 @@ function exampleTwo() {
   console.log("2글자 이하 역명:", shortNames);
 }
 
+// 전체 거리 계산 (역 개수 기반)
 function exampleThree() {
   let totalDistance = 0;
 
@@ -62,13 +52,11 @@ function exampleThree() {
     return totalDistance;
   }
 
-  console.log(
-    "총 거리:",
-    calculateDistance(daejeonLine1.stations.length) + "km"
-  );
+  console.log("총 거리:", calculateDistance(daejeonLine1.stations.length) + "km");
   console.log("전역변수 totalDistance:", totalDistance);
 }
 
+// 승객 유형별 요금 계산 (성인/청소년/어린이)
 function exampleFour() {
   function fareCalculator() {
     let baseFare = daejeonLine1.fare;
@@ -92,6 +80,7 @@ function exampleFour() {
   console.log("요금 체계:", fares);
 }
 
+// 인원수에 따른 요금 계산 + 할인 적용
 function exampleFive() {
   function calculateFare(base, passengers, callback) {
     return callback(base, passengers);
@@ -109,6 +98,7 @@ function exampleFive() {
   console.log("10% 할인 후:", discount + "원");
 }
 
+// 특정 역 도착 여부 확인 함수 생성 및 테스트
 function exampleSix() {
   function createStationChecker(targetStation) {
     return function (currentStation) {
@@ -127,6 +117,7 @@ function exampleSix() {
   console.log(checkForDaejeon("중앙로"));
 }
 
+// 역 정보 객체를 받아 환승 가능 여부 표시
 function exampleSeven() {
   const stationInfo = {
     name: "시청",
@@ -152,6 +143,7 @@ function exampleSeven() {
   console.log(result);
 }
 
+// 노선 진행률 계산 (현재 위치 기준)
 function exampleEight() {
   function calculateProgress(current, total, callback) {
     let percentage = (current / total) * 100;
@@ -171,6 +163,7 @@ function exampleEight() {
   console.log(progress);
 }
 
+// 역 리스트를 객체 배열로 변환 (역 이름, 구역 포함)
 function exampleNine() {
   function transformStations(stations, callback) {
     let newArray = [];
@@ -196,6 +189,7 @@ function exampleNine() {
   console.log("역 객체 배열:", stationObjects);
 }
 
+// 특정 승차 정보 분석 (혼잡도 및 출근 시간 여부)
 function exampleTen() {
   const rideData = {
     station: "정부청사",
@@ -230,6 +224,7 @@ function exampleTen() {
   console.log("승차 분석:", analysis);
 }
 
+// 예제 함수들 순차 실행
 const examples = [
   exampleOne,
   exampleTwo,
