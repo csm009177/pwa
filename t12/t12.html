@@ -8,7 +8,10 @@
 </head>
 
 <body>
+    <div id="root"></div>
     <script>
+        const root = document.getElementById('root');
+        
         // 브라우저 콘솔에서 practice.exampleOne() ~ practice.exampleTen() 형태로 실행
 
         const practice = {
@@ -41,7 +44,7 @@
                 console.log("곱셈:", calculate(5, 3, multiply));
                 console.log("인사:", calculate("철수", 25, greet));
 
-                const result = calculate(10, 2, (a, b) => {
+                const result = calculate(5, 2, (a, b) => {
                     return a - b;
                 });
                 console.log("뺄셈:", result);
@@ -630,6 +633,7 @@
         console.log("사용법:");
         console.log("practice.exampleOne() ~ practice.exampleTen() - 개별 예제 실행");
         console.log("practice.runAll() - 모든 예제 한번에 실행");
+
 
     </script>
 </body>
