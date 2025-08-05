@@ -65,9 +65,8 @@
       align-items: center;
       justify-content: center;
     }
-    #root > .예제박스 > .계산기 > 
 
-    #root>.예제박스>.계산기> .숫자버튼 {
+    #root>.예제박스>.계산기>#root>.예제박스>.계산기>.숫자버튼 {
       width: 10vw;
       height: 10vh;
       background-color: rgb(100, 100, 100);
@@ -77,7 +76,6 @@
       cursor: pointer;
       margin: 5px;
     }
-
   </style>
 </head>
 
@@ -104,10 +102,8 @@
       계산기만들기: () => {
         console.log(document.getElementById('root').children[1])
         const 버튼형계산기 = document.createElement('div');
-        버튼형계산기.style = `
 
-        `;
-        for(let i=0; i<10; i++){
+        for (let i = 0; i < 10; i++) {
           const 숫자버튼 = document.createElement('button');
           const 숫자패드 = document.createElement('div');
           숫자버튼.textContent = i;
@@ -115,23 +111,55 @@
           숫자버튼.addEventListener('click', () => {
             console.log(`버튼 ${i} 클릭됨`);
           });
-
           버튼형계산기.appendChild(숫자버튼);
         }
-
-
-
         //계산기 만들기 예제박스 찾기
         const 계산기예제박스 = document.getElementById('root').children[1];
         계산기예제박스.appendChild(버튼형계산기);
 
       },
-      테스트2: () => {
-
+      문자열을합치는함수: () => {
+        function 인자와함수를받아서넘기는함수(일인자, 이인자, 콜백) {
+          return 콜백(일인자, 이인자);
+        }
+        function 문자열을더하기(일문장, 이문장) {
+          if (typeof 일문장 === 'string' && typeof 이문장 === 'string') {
+            return 일문장 + 이문장;
+          }
+        }
+        return 인자와함수를받아서넘기는함수('웰치스는 ', '거대 동물이다', 문자열을더하기);
       },
-      테스트3: () => {
-
-      }
+      문자열을합치고띄워쓰기로나누는함수: () => {
+        function 인자와함수를받아서넘기는함수(일인자, 이인자, 콜백) {
+          return 콜백(일인자, 이인자);
+        }
+        const 문자열을더하기 = (일문장, 이문장) => {
+          if (typeof 일문장 === 'string' && typeof 이문장 === 'string') {
+            return 일문장 + 이문장;
+          }
+        }
+        const 문자열을띄워쓰기로나누기 = (문장) => {
+          if (typeof 문장 === 'string') {
+            return 문장.split(' ');
+          }
+        }
+        return 문자열을띄워쓰기로나누기(
+          인자와함수를받아서넘기는함수('오늘의 일용할 양식은 ', '양념 치킨 후라이드 3세이다', 문자열을더하기)
+        );
+      },
+      콜백으로객체를받아서배열를만드는함수 : () => {
+        const 객체를받아서콜백에넘기는함수 = (객체, 콜백) => {
+          return 콜백(객체);
+        }
+        const 객체를배열로만드는함수 = (목표객체) => {
+          const 목표리스트 = [];
+          for(let 키 in 목표객체){
+            목표리스트.push(목표객체[키]);
+          }
+          return 목표리스트;
+        }
+        return 객체를받아서콜백에넘기는함수({'양념':'간장', '재료':'당근'}, 객체를배열로만드는함수)
+      },
 
     };
 
