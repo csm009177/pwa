@@ -1,11 +1,6 @@
-// console.dir(global);
-
-let myTime = 1000; 
-
-function hello() {
-  console.log("Hello, World!");
-}
-
-setTimeout(hello, 1000 + myTime);
-myTime = myTime + 5000;
-setTimeout(hello, 2000 + myTime);
+setTimeout(() => {
+  console.log("안녕 현준?");
+},1000);
+setTimeout(() => {
+  console.log("현준 욱순이 누구야?")
+},500);
