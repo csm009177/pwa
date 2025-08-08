@@ -1,459 +1,57 @@
-<!-- copilot 입력 프롬프트 
-HTML 만들거야
-<script> 태그 안에 모든 javascript 코드를 작성하는 방식이야
-마치 리액트 처럼 <div #root> 사용을 제외하고, css, tag 모두 dom 제어 방식으로 작성할거야
-되도록 css는 유틸리티 클래스 패턴으로 작성할거야
-되도록 DOM을 만들때는 DOM 메서드를 사용할거야
-MBTI 앱을 만들거야
-구글 애드센스 광고를 붙일거야
-구조적으로 내가 편집해야 하니까, 함수단위로, FP 방식으로 작성해
-모바일에 대응하는 것을 고려해
-setTimeout을 사용해서 앱의 긴장감을 부여해 
--->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBTI 성격 유형 테스트</title>
-    <style>
-        /* 유틸리티 클래스 패턴 */
-        .container { max-width: 480px; margin: 0 auto; padding: 20px; }
-        .text-center { text-align: center; }
-        .text-left { text-align: left; }
-        .mb-1 { margin-bottom: 8px; }
-        .mb-2 { margin-bottom: 16px; }
-        .mb-3 { margin-bottom: 24px; }
-        .mb-4 { margin-bottom: 32px; }
-        .p-2 { padding: 16px; }
-        .p-3 { padding: 24px; }
-        .rounded { border-radius: 8px; }
-        .shadow { box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .bg-primary { background-color: #3b82f6; }
-        .bg-secondary { background-color: #6b7280; }
-        .bg-success { background-color: #10b981; }
-        .bg-white { background-color: white; }
-        .text-white { color: white; }
-        .text-gray { color: #6b7280; }
-        .btn { padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; transition: all 0.2s; }
-        .btn:hover { transform: translateY(-1px); }
-        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
-        .question-btn { width: 100%; margin: 8px 0; padding: 16px; text-align: left; background: #f9fafb; border: 2px solid #e5e7eb; }
-        .question-btn:hover { background: #f3f4f6; border-color: #3b82f6; }
-        .question-btn.selected { background: #dbeafe; border-color: #3b82f6; }
-        .progress-bar { width: 100%; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; }
-        .progress-fill { height: 100%; background: #3b82f6; transition: width 0.3s ease; }
-        .loading { display: inline-block; width: 20px; height: 20px; border: 3px solid #f3f3f3; border-top: 3px solid #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .fade-in { animation: fadeIn 0.5s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .result-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-        @media (max-width: 480px) {
-            .container { padding: 16px; }
-            .btn { font-size: 14px; padding: 10px 20px; }
-            .question-btn { padding: 12px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      width: 400px;
+      height: 400px;
+      background-color: cadetblue;
+    }
+
+    #target {
+      width: 10px;
+      height: 10px;
+      background-color: coral;
+    }
+
+  </style>
 </head>
 <body>
-    <div id="root"></div>
-    
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
-         crossorigin="anonymous"></script>
+  <div id="root">
+    <div id="target"></div>
+  </div>
 
-    <script>
-        // MBTI 질문 데이터
-        const questions = [
-            {
-                id: 1,
-                question: "새로운 사람들과 만났을 때 당신은?",
-                answers: [
-                    { text: "먼저 다가가서 대화를 시작한다", type: "E" },
-                    { text: "상대방이 먼저 말을 걸기를 기다린다", type: "I" }
-                ]
-            },
-            {
-                id: 2,
-                question: "정보를 받아들일 때 당신은?",
-                answers: [
-                    { text: "구체적인 사실과 세부사항에 집중한다", type: "S" },
-                    { text: "큰 그림과 가능성에 집중한다", type: "N" }
-                ]
-            },
-            {
-                id: 3,
-                question: "결정을 내릴 때 당신은?",
-                answers: [
-                    { text: "논리적 분석을 통해 결정한다", type: "T" },
-                    { text: "감정과 가치관을 고려해서 결정한다", type: "F" }
-                ]
-            },
-            {
-                id: 4,
-                question: "일상생활에서 당신은?",
-                answers: [
-                    { text: "계획을 세우고 일정에 맞춰 행동한다", type: "J" },
-                    { text: "유연하게 상황에 맞춰 행동한다", type: "P" }
-                ]
-            },
-            {
-                id: 5,
-                question: "에너지를 얻는 방법은?",
-                answers: [
-                    { text: "사람들과 함께 있을 때", type: "E" },
-                    { text: "혼자 조용한 시간을 가질 때", type: "I" }
-                ]
-            },
-            {
-                id: 6,
-                question: "문제를 해결할 때?",
-                answers: [
-                    { text: "경험과 실제 사례를 바탕으로 해결한다", type: "S" },
-                    { text: "새로운 아이디어와 창의적 방법을 찾는다", type: "N" }
-                ]
-            },
-            {
-                id: 7,
-                question: "갈등 상황에서?",
-                answers: [
-                    { text: "객관적 사실에 근거해 해결한다", type: "T" },
-                    { text: "모든 사람의 감정을 고려해 해결한다", type: "F" }
-                ]
-            },
-            {
-                id: 8,
-                question: "여행 계획을 세울 때?",
-                answers: [
-                    { text: "상세한 일정표를 만든다", type: "J" },
-                    { text: "대략적인 계획만 세우고 즉흥적으로 움직인다", type: "P" }
-                ]
-            }
-        ];
+  <script>
+    const root = document.getElementById('root');
+    const target = document.getElementById('target');
 
-        // MBTI 타입별 설명
-        const mbtiTypes = {
-            "INTJ": { 
-                name: "건축가", 
-                description: "독립적이고 창의적인 전략가. 모든 일에 계획을 가지고 있습니다.",
-                characteristics: ["전략적 사고", "독립적", "창의적", "목표 지향적"]
-            },
-            "INTP": { 
-                name: "논리술사", 
-                description: "혁신적인 발명가로, 지식에 대한 갈증을 멈출 수 없습니다.",
-                characteristics: ["논리적", "분석적", "호기심이 많음", "독립적"]
-            },
-            "ENTJ": { 
-                name: "통솔자", 
-                description: "대담하고 상상력이 풍부한 강력한 의지의 지도자입니다.",
-                characteristics: ["리더십", "결단력", "전략적", "목표 지향적"]
-            },
-            "ENTP": { 
-                name: "변론가", 
-                description: "똑똑하고 호기심이 많은 사색가로, 지적 도전을 거부할 수 없습니다.",
-                characteristics: ["창의적", "열정적", "독립적", "토론을 좋아함"]
-            },
-            "INFJ": { 
-                name: "옹호자", 
-                description: "선의의 옹호자이며, 항상 원대한 목적을 위해 노력합니다.",
-                characteristics: ["이상주의적", "통찰력", "결단력", "헌신적"]
-            },
-            "INFP": { 
-                name: "중재자", 
-                description: "항상 선을 행할 준비가 되어 있는 시인 기질의 이상주의자입니다.",
-                characteristics: ["이상주의적", "충성심", "가치 중시", "융통성"]
-            },
-            "ENFJ": { 
-                name: "주인공", 
-                description: "카리스마 넘치고 영감을 주는 지도자로, 듣는 이들을 매혹시킵니다.",
-                characteristics: ["카리스마", "이타적", "영감을 줌", "설득력"]
-            },
-            "ENFP": { 
-                name: "활동가", 
-                description: "열정적이고 창의적인 사교적인 자유로운 영혼입니다.",
-                characteristics: ["열정적", "창의적", "사교적", "융통성"]
-            },
-            "ISTJ": { 
-                name: "현실주의자", 
-                description: "실용적이고 신중한 접근을 통해 성공하는 사실에 기반한 사람입니다.",
-                characteristics: ["책임감", "실용적", "신중함", "전통 중시"]
-            },
-            "ISFJ": { 
-                name: "수호자", 
-                description: "항상 기꺼이 좋은 일을 하려는 따뜻하고 헌신적인 수호자입니다.",
-                characteristics: ["배려심", "헌신적", "실용적", "세심함"]
-            },
-            "ESTJ": { 
-                name: "경영자", 
-                description: "뛰어난 관리 능력을 가진 대표적인 지도자입니다.",
-                characteristics: ["조직력", "실용적", "결단력", "전통 중시"]
-            },
-            "ESFJ": { 
-                name: "집정관", 
-                description: "배려심이 많고 사교적이며 항상 남을 도우려 하는 인기쟁이입니다.",
-                characteristics: ["배려심", "사교적", "협력적", "책임감"]
-            },
-            "ISTP": { 
-                name: "만능재주꾼", 
-                description: "대담하고 실용적인 실험정신이 풍부한 장인입니다.",
-                characteristics: ["실용적", "융통성", "조용함", "문제 해결"]
-            },
-            "ISFP": { 
-                name: "모험가", 
-                description: "유연하고 매력적인 예술가로, 항상 새로운 가능성을 탐험합니다.",
-                characteristics: ["예술적", "융통성", "배려심", "겸손함"]
-            },
-            "ESTP": { 
-                name: "사업가", 
-                description: "항상 주변 사람들에게 영향을 미치는 에너지 넘치는 활동가입니다.",
-                characteristics: ["활동적", "실용적", "사교적", "융통성"]
-            },
-            "ESFP": { 
-                name: "연예인", 
-                description: "자발적이고 열정적이며 사교적인 연예인입니다.",
-                characteristics: ["열정적", "사교적", "융통성", "낙천적"]
-            }
-        };
+    root.style.position = 'relative';
+    target.style.position = 'absolute';
 
-        // 애플리케이션 상태
-        let appState = {
-            currentQuestion: 0,
-            answers: [],
-            isLoading: false,
-            showResult: false,
-            mbtiResult: null
-        };
+    let handle = 0;
 
-        // DOM 유틸리티 함수들
-        const createElement = (tag, className = '', textContent = '') => {
-            const element = document.createElement(tag);
-            if (className) element.className = className;
-            if (textContent) element.textContent = textContent;
-            return element;
-        };
+    target.style.top = handle + 'px';
+    target.style.left = handle + 'px';
 
-        const appendChildren = (parent, ...children) => {
-            children.forEach(child => parent.appendChild(child));
-            return parent;
-        };
+    const timer = setInterval(()=> {
+      handle++;
+      target.style.top = handle + 'px';
+      target.style.left = handle + 'px';
+      if (handle > 400) {
+        clearInterval(timer);
+      }
+    }, 16)
 
-        // 컴포넌트 생성 함수들
-        const createHeader = () => {
-            const header = createElement('div', 'text-center mb-4');
-            const title = createElement('h1', 'mb-2', 'MBTI 성격 유형 테스트');
-            const subtitle = createElement('p', 'text-gray', '나의 성격 유형을 알아보세요!');
-            
-            return appendChildren(header, title, subtitle);
-        };
 
-        const createProgressBar = () => {
-            const progressContainer = createElement('div', 'mb-3');
-            const progressText = createElement('p', 'text-center mb-1', 
-                `${appState.currentQuestion + 1} / ${questions.length}`);
-            const progressBarBg = createElement('div', 'progress-bar');
-            const progressFill = createElement('div', 'progress-fill');
-            
-            const progress = ((appState.currentQuestion + 1) / questions.length) * 100;
-            progressFill.style.width = `${progress}%`;
-            
-            progressBarBg.appendChild(progressFill);
-            return appendChildren(progressContainer, progressText, progressBarBg);
-        };
+  </script>
 
-        const createQuestionCard = () => {
-            const question = questions[appState.currentQuestion];
-            const card = createElement('div', 'bg-white rounded shadow p-3 mb-4 fade-in');
-            const questionText = createElement('h2', 'mb-3', question.question);
-            const answersContainer = createElement('div', '');
-            
-            question.answers.forEach((answer, index) => {
-                const button = createElement('button', 'question-btn rounded', answer.text);
-                button.onclick = () => selectAnswer(index);
-                answersContainer.appendChild(button);
-            });
-            
-            return appendChildren(card, questionText, answersContainer);
-        };
-
-        const createNavigationButtons = () => {
-            const container = createElement('div', 'text-center');
-            
-            if (appState.currentQuestion > 0) {
-                const prevButton = createElement('button', 'btn bg-secondary text-white rounded', '이전');
-                prevButton.onclick = () => goToPreviousQuestion();
-                container.appendChild(prevButton);
-            }
-            
-            return container;
-        };
-
-        const createLoadingScreen = () => {
-            const container = createElement('div', 'text-center p-3');
-            const loading = createElement('div', 'loading mb-2');
-            const text = createElement('p', '', '결과를 분석하고 있습니다...');
-            
-            return appendChildren(container, loading, text);
-        };
-
-        const createResultCard = () => {
-            const result = appState.mbtiResult;
-            const card = createElement('div', 'result-card rounded shadow p-3 mb-4 fade-in');
-            
-            const title = createElement('h1', 'text-center mb-2', `${result.type}`);
-            const name = createElement('h2', 'text-center mb-3', result.name);
-            const description = createElement('p', 'mb-3', result.description);
-            
-            const characteristicsTitle = createElement('h3', 'mb-2', '주요 특징:');
-            const characteristicsList = createElement('ul', '');
-            
-            result.characteristics.forEach(char => {
-                const listItem = createElement('li', 'mb-1', char);
-                characteristicsList.appendChild(listItem);
-            });
-            
-            const restartButton = createElement('button', 'btn bg-white rounded', '다시 테스트하기');
-            restartButton.style.color = '#3b82f6';
-            restartButton.onclick = () => restartTest();
-            
-            return appendChildren(card, title, name, description, characteristicsTitle, characteristicsList, restartButton);
-        };
-
-        const createAdSense = () => {
-            const adContainer = createElement('div', 'text-center mb-4');
-            const adElement = createElement('ins', 'adsbygoogle');
-            adElement.style.display = 'block';
-            adElement.setAttribute('data-ad-client', 'ca-pub-YOUR_PUBLISHER_ID');
-            adElement.setAttribute('data-ad-slot', 'YOUR_AD_SLOT_ID');
-            adElement.setAttribute('data-ad-format', 'auto');
-            adElement.setAttribute('data-full-width-responsive', 'true');
-            
-            adContainer.appendChild(adElement);
-            
-            // AdSense 로드
-            setTimeout(() => {
-                try {
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                } catch (e) {
-                    console.log('AdSense loading...');
-                }
-            }, 100);
-            
-            return adContainer;
-        };
-
-        // 상태 관리 함수들
-        const selectAnswer = (answerIndex) => {
-            const question = questions[appState.currentQuestion];
-            const selectedAnswer = question.answers[answerIndex];
-            
-            // 버튼 선택 효과
-            document.querySelectorAll('.question-btn').forEach(btn => {
-                btn.classList.remove('selected');
-            });
-            document.querySelectorAll('.question-btn')[answerIndex].classList.add('selected');
-            
-            // 답변 저장
-            appState.answers[appState.currentQuestion] = selectedAnswer.type;
-            
-            // 다음 질문으로 이동 (긴장감을 위한 지연)
-            setTimeout(() => {
-                if (appState.currentQuestion < questions.length - 1) {
-                    appState.currentQuestion++;
-                    render();
-                } else {
-                    calculateResult();
-                }
-            }, 500);
-        };
-
-        const goToPreviousQuestion = () => {
-            if (appState.currentQuestion > 0) {
-                appState.currentQuestion--;
-                render();
-            }
-        };
-
-        const calculateResult = () => {
-            appState.isLoading = true;
-            render();
-            
-            // 결과 계산 (긴장감을 위한 지연)
-            setTimeout(() => {
-                const counts = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
-                
-                appState.answers.forEach(answer => {
-                    counts[answer]++;
-                });
-                
-                const mbtiType = 
-                    (counts.E > counts.I ? 'E' : 'I') +
-                    (counts.S > counts.N ? 'S' : 'N') +
-                    (counts.T > counts.F ? 'T' : 'F') +
-                    (counts.J > counts.P ? 'J' : 'P');
-                
-                appState.mbtiResult = {
-                    type: mbtiType,
-                    ...mbtiTypes[mbtiType]
-                };
-                
-                appState.isLoading = false;
-                appState.showResult = true;
-                render();
-            }, 2000);
-        };
-
-        const restartTest = () => {
-            appState = {
-                currentQuestion: 0,
-                answers: [],
-                isLoading: false,
-                showResult: false,
-                mbtiResult: null
-            };
-            render();
-        };
-
-        // 렌더링 함수
-        const render = () => {
-            const root = document.getElementById('root');
-            const container = createElement('div', 'container');
-            
-            if (appState.showResult) {
-                // 결과 화면
-                appendChildren(container, 
-                    createHeader(),
-                    createAdSense(),
-                    createResultCard()
-                );
-            } else if (appState.isLoading) {
-                // 로딩 화면
-                appendChildren(container,
-                    createHeader(),
-                    createLoadingScreen()
-                );
-            } else {
-                // 질문 화면
-                appendChildren(container,
-                    createHeader(),
-                    createProgressBar(),
-                    createQuestionCard(),
-                    createNavigationButtons()
-                );
-            }
-            
-            root.innerHTML = '';
-            root.appendChild(container);
-        };
-
-        // 앱 초기화
-        const initApp = () => {
-            setTimeout(() => {
-                render();
-            }, 300);
-        };
-
-        // 앱 시작
-        document.addEventListener('DOMContentLoaded', initApp);
-    </script>
 </body>
 </html>
