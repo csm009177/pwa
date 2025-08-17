@@ -1,7 +1,7 @@
 var academyInfo = {
-  city: "",
-  district : "",
-  neighborhood : ""
+  city: "대전",
+  district : "서구",
+  neighborhood : "둔산동"
 }
 // 아래 부분 대괄호가 요번 주요 핵심!
 var addressComponents = [
