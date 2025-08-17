@@ -1,10 +1,9 @@
-let jin = 1;
-
 const rangeVal = {
-    start : 0,
-    end : 10,
-}
+  start: 0,
+  end: 10,
+};
 
-for (let i = rangeVal.start; i < rangeVal.end; i++) {
-    console.log(jin);
+for (let index = rangeVal.start; index < rangeVal.end; index++) {
+  const sum = (rangeVal.start += 1);
+  console.log(sum);
 }
