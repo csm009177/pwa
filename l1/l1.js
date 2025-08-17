@@ -1,6 +1,6 @@
 let jin = 1;
 
-rangeVal = {
+const rangeVal = {
     start : 0,
     end : 10,
 }
