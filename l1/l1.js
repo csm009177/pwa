@@ -1,9 +1,9 @@
 const rangeVal = {
   start: 0,
+  middle: [],
   end: 10,
 };
-
-for (let index = rangeVal.start; index < rangeVal.end; index++) {
-  const sum = (rangeVal.start += 1);
-  console.log(sum);
+for(let i=rangeVal.start; i<rangeVal.end; i++){
+    rangeVal.middle[i] = i;
 }
+console.log(rangeVal.middle);
