@@ -1,4 +1,10 @@
 let jin = 1;
-for (let i = 0; i < 10; i++) {
+
+rangeVal = {
+    start : 0,
+    end : 10,
+}
+
+for (let i = rangeVal.start; i < rangeVal.end; i++) {
     console.log(jin);
 }
