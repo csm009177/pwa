@@ -34,19 +34,6 @@ var rangeValue = {
   end: academyInfo.length,
 };
 
-function componentCompiler(num) {
-  var addressComponents = [
-    academyInfo[num]["city"],
-    academyInfo[num]["district"],
-    academyInfo[num]["neighborhood"],
-    academyInfo[num]["building"],
-    academyInfo[num]["name"],
-    academyInfo[num]["branch"],
-    academyInfo[num]["courses"],
-  ];
-  return addressComponents; 
-}
-
-for (let i = rangeValue.start; i < rangeValue.end; i++) {
-  console.log(componentCompiler(i));
+for(let i=rangeValue.start; i<rangeValue.end; i++){
+  console.log(academyInfo[i])
 }
