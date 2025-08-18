@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <h1>공욱재</h1>
+    <h1>공욱재</h1>
+  </div>
+  <script>
+    const root = document.getElementById('root');
+    if(root.children[0].textContent === root.children[1].textContent) {
+      root.innerHTML = "<h2>이름두개가 같어</h2>";
+    } else {
+      root.innerHTML = "<h2>이름두개가 달러</h2>";
+    }
+  </script>
+</body>
+</html>
