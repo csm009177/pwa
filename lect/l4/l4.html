@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="students-list"></ul>
+    <script>
+        let students = [
+            { name: "김해진", age: 27 },
+            { name: "김혜민", age: 22 },
+            { name: "박소연", age: 25 },
+            { name: "서성우", age: 21 },
+            { name: "손정민", age: 29 },
+            { name: "최예진", age: 23 },
+            { name: "최현준", age: 26 },
+            { name: "한재희", age: 24 },
+            { name: "최성민", age: 30 },
+            { name: "김현"  , age: 20 }
+        ];
+        const testArea = document.getElementById("students-list");
+        // ul 색갈변경
+        testArea.style.backgroundColor = "lightgray";
+        console.log(testArea);
+
+        for(let i=0; i<students.length; i++){
+            const li = document.createElement('li');
+            li.textContent = students[i]['name']
+            testArea.appendChild(li);
+        }
+    </script>
+</body>
+
+</html>
