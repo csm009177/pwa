@@ -8,10 +8,26 @@ const htmlElements = {
     colors: ["blue", "red", "green", "black", "gray", "white", "yellow", "purple"],
     zIndexes: [1, 10, 5, 2, 3, 1, 15, 8]
 };
-
-for(let key in htmlElements){
-    console.log(key, ' => ');
-    for(let i=0; i<htmlElements[key].length; i++){
-        console.log(htmlElements[key][i]);
+function 객체안의배열을반복문으로출력하기(){
+    for(let key in htmlElements){
+        console.log(key, ' => ');
+        for(let i=0; i<htmlElements[key].length; i++){
+            console.log(htmlElements[key][i]);
+        }
     }
+
 }
+
+
+function exampleNine() {
+    console.log("첫 번째 input 태그의 인덱스:");
+    let foundIndex = -1;
+    for(let i = 0; i < htmlElements.tags.length; i++) {
+        if(htmlElements.tags[i] === "input") {
+            foundIndex = i;
+            break;
+        }
+    }
+    console.log(foundIndex);
+}
+exampleNine()
