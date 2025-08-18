@@ -20,7 +20,7 @@ function forLoopPrac() {
 
 function 배열안에객체에접근() {
   for (let i = 0; i < students.length; i++) {
-    console.log(students[i]);
+    // console.log(students[i]);
     for(let key in students[i]){
         console.log(students[i][key])
     }
