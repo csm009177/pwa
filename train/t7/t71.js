@@ -24,3 +24,8 @@ class N_닝겐스 {
 }
 const callNingens = new N_닝겐스();
 // console.log("NIngens job : ", callNingens.job);
+
+function 직업출력기(){
+    const 닝겐 = new N_닝겐스();
+    console.log(닝겐.job);
+}
