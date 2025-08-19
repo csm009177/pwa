@@ -15,6 +15,7 @@ const kong = {
 }
 console.dir(kong);
 kong.lunch = "김밥";
+kong['dinner'] = '라면'
 console.dir(kong);
 
 const kokemon = [];
