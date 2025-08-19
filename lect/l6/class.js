@@ -17,5 +17,5 @@ class Test2 {
   }
 }
 
-const test2 = new Test();
+const test2 = new Test2();
 console.log(test2);
