@@ -1,10 +1,20 @@
-const http = require('http')
-const server = http.createServer((req,res) => {
-});
-server.listen(8080, (err) => {
-  if(err) {
-    console.error('server not working');
-  } else {
-    console.log('8080 server working http://localhost:8080');
+const http = require("http");
+const fs = require("fs");
+const port = 8080;
+
+const serv = http.createServer((req, res) => {
+  const fileName = __filename;
+  if (req.url === "/") {
+    fs.readFile("./serv/src/index.html", (err, data) => {
+      res.end(data);
+    });
   }
-})
+  if(req.url === '/join'){
+    fs.writeFileSync('test.json', 'join', 'utf-8');
+    res.end( console.log('json 파일 생성완료'));
+  }
+});
+
+serv.listen(port, () => {
+  console.log(`http://localhost:${port}`);
+});
