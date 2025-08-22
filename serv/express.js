@@ -22,7 +22,14 @@ serv.post("/join", (req, res) => {
       폼데이터[decodeURIComponent(키)] = decodeURIComponent(값 || "");
     }
     console.log("받은 폼데이터:", 폼데이터);
-    fs.writeFileSync("test.json", JSON.stringify(폼데이터, null, 2), "utf-8");
+    const 폼데이터에있는ID = 폼데이터["id"];
+    console.log(폼데이터에있는ID);
+
+    fs.writeFileSync(
+      폼데이터에있는ID + ".json",
+      JSON.stringify(폼데이터, null, 2),
+      "utf-8"
+    );
     res.setHeader("Content-Type", "text/plain; charset=utf-8");
     res.end("회원가입 완료!");
   });
