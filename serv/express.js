@@ -25,13 +25,18 @@ serv.post("/join", (req, res) => {
     const 폼데이터에있는ID = 폼데이터["id"];
     console.log(폼데이터에있는ID);
 
-    fs.writeFileSync(
-      폼데이터에있는ID + ".json",
-      JSON.stringify(폼데이터, null, 2),
-      "utf-8"
-    );
-    res.setHeader("Content-Type", "text/plain; charset=utf-8");
-    res.end("회원가입 완료!");
+    if (fs.existsSync(폼데이터에있는ID + ".json")) {
+      res.setHeader("Content-Type", "text/plain; charset=utf-8");
+      res.end("이미 존재하는 아이디!");
+    } else {
+      fs.writeFileSync(
+        폼데이터에있는ID + ".json",
+        JSON.stringify(폼데이터, null, 2),
+        "utf-8"
+      );
+      res.setHeader("Content-Type", "text/plain; charset=utf-8");
+      res.end("회원가입 완료!");
+    }
   });
 });
 
