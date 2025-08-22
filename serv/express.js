@@ -23,7 +23,7 @@ serv.post("/join", (req, res) => {
     }
     console.log("받은 폼데이터:", 폼데이터);
     fs.writeFileSync("test.json", JSON.stringify(폼데이터, null, 2), "utf-8");
-    res.setHeader("Content-Type", "text/plain; charset=utf-8");``
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
     res.end("회원가입 완료!");
   });
 });
