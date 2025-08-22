@@ -4,7 +4,7 @@ const port = 8080;
 
 const serv = http.createServer((req, res) => {
   if (req.url === "/") {
-    fs.readFile("./serv/src/index.html", (err, data) => {
+    fs.readFile(__dirname + "/index.html", (err, data) => {
       res.end(data);
     });
   }
