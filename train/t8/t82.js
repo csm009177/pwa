@@ -17,9 +17,24 @@ function 평균음식가격계산(){
 }
 // console.log(평균음식가격계산()); 
 
-function 평균보다싼가격출력(){
-    let chip
+function 평균보다싼가격만출력(){
+    for(let i=0; i<lunchData.prices.length; i++){
+        if(평균음식가격계산()>lunchData.prices[i]){
+            console.log(lunchData.prices[i])
+        }
+    }    
+}
+// 평균보다싼가격만출력();
 
+function 평균보다싼가격과메뉴출력(){
+    for(let i=0; i<lunchData.prices.length; i++){
+        if(평균음식가격계산()>lunchData.prices[i]){
+            console.log(lunchData.menus[i]+':'+lunchData.prices[i]);
+        }
+    }    
+}
+// 평균보다싼가격과메뉴출력();
+
+function 가장비씬메뉴출력(){
     
-
 }
