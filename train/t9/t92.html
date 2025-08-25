@@ -6,9 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        * { width: 100vw; height: 100vh; margin: 0;}
+        * {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+        }
 
-        #뿌리 { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; background-color: lightgreen; }
+        #뿌리 {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            background-color: lightgreen;
+        }
     </style>
 </head>
 
@@ -16,25 +28,46 @@
     <div id="뿌리"></div>
 </body>
 <script>
-    const 뿌리 = document.getElementById('뿌리');
+    const root = document.getElementById('뿌리');
 
     class 요소생성 {
-        constructor(부모, 요소명, 높이, 넓이, 색갈) {
-            this.부모 = 부모;
-            this.요소명 = 요소명;
-            this.높이 = 높이;
-            this.넓이 = 넓이;
-            this.색갈 = 색갈;
-
+        constructor(부모클래스, 요소명, 높이, 넓이, 색갈, 속성) {
             const 요소 = document.createElement(요소명);
+            let 부모;
+            if (부모클래스 === '#뿌리') {
+                부모 = document.getElementById('뿌리');
+            } else {
+                부모 = document.getElementsByClassName(부모클래스)[0];
+            }
+            for (const key in 속성) {
+                if (key === 'style') {
+                    요소.style.cssText += ';' + 속성[key];
+                } else {
+                    요소.setAttribute(key, 속성[key]);
+                }
+            }
             요소.style.width = 넓이 + 'vw';
             요소.style.height = 높이 + 'vh';
             요소.style.backgroundColor = 색갈;
             return 부모.appendChild(요소);
         }
     }
-    const 디브 = new 요소생성(뿌리, 'div', 45, 90, 'darkgreen');
+    new 요소생성('#뿌리', 'div', 20, 90, 'darkgreen', { class: '버튼박스' });
+    new 요소생성('#뿌리', 'div', 70, 90, 'darkgreen', { class: '표현박스' });
 
+    class 버튼생성 {
+        constructor(부모클래스, 버튼명, 함수명) {
+            this.버튼 = new 요소생성(부모클래스, 'button', 3, 7, 'black', { class: '버튼', style: 'color:white' });
+            this.버튼.innerHTML = 버튼명;
+            this.버튼.onclick = 함수명;
+        }
+    }
+    function 초기화() {
+        const 표현박스 = document.getElementsByClassName('표현박스')[0];
+        표현박스.innerHTML = "";
+        console.log("초기화하기 함수 실행됨!");
+    }
+    new 버튼생성('버튼박스', '초기화', 초기화);
 
 </script>
 
