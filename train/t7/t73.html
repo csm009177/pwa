@@ -39,25 +39,28 @@
         };
 
         class 요소 {
-            constructor(부모태그, 받은태그, 받은색갈, 받은크기) {
-                this.부모 = 부모태그;
-                this.태그 = 받은태그;
-                this.색갈 = 받은색갈;
-                this.크기 = 받은크기;
+            constructor(부모클래스명, 클래스명, 받은태그, 받은색갈, 받은크기, 받은속성) {
+                const 요소 = document.createElement(받은태그);
+                let 부모;
+                if (부모클래스명 === '#root') {
+                    부모 = document.getElementById('root');
+                } else {
+                    부모 = document.getElementsByClassName(부모클래스명)[0];
+                }
+                요소.className = 클래스명;
+                요소.style.backgroundColor = 받은색갈;
+                요소.style.width = 받은크기 + 'px';
+                요소.style.height = 받은크기 + 'px'; // 오타: heigth → height
+                // 커스텀 속성 넣기
+                if (받은속성) {
+                    요소.style.cssText += ';' + 받은속성;
+                }
 
-                this.요소 = document.createElement(this.태그);
-                this.요소.style.backgroundColor = this.색갈;
-                this.요소.style.width = this.크기 + 'px';
-                this.요소.style.height = this.크기 + 'px';
-                this.부모.appendChild(this.요소);
+                return 부모.appendChild(요소);
             }
         }
-
-        new 요소(뿌리, "div", "green", 100);
-        new 요소(뿌리, "div", "red", 150);
-        new 요소(뿌리, "div", "blue", 200);
-
-
+        new 요소('#root', '박스1', 'div', 'red', 300, 'display:flex; justify-content:center; align-items:center;');
+        new 요소('박스1', '박스2', 'div', 'blue', 200);
     </script>
 </body>
 
