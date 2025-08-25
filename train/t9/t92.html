@@ -75,6 +75,13 @@
     }
     new 버튼생성('버튼박스', '디브생성', () => 디브생성(10, 10, 'gray'));
 
+    function 모든디브색상변경(색상){
+        const 표현박스 = document.getElementsByClassName('표현박스')[0];
+        for(let i=0; i<표현박스.children.length; i++){
+            표현박스.children[i].style.backgroundColor = 색상;
+        }
+    }
+    new 버튼생성('버튼박스', '빨간색', () => 모든디브색상변경('red'));
 
 </script>
 
