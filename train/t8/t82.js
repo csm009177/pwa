@@ -62,3 +62,13 @@ function 가장싼메뉴출력(){
 }
 // 가장싼메뉴출력()
 
+function 중식메뉴출력하기(){
+    let 중식메뉴모음 = [];
+    for(let i=0; i<lunchData.types.length; i++){
+        if(lunchData.types[i] === '중식'){
+            중식메뉴모음.push(lunchData.menus[i]);
+        }
+    }
+    return console.log(중식메뉴모음);
+}
+중식메뉴출력하기()
