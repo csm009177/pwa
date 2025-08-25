@@ -5,46 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <style>*{ font-size: ;}</style> -->
+    <style>
+        * { width: 100vw; height: 100vh; margin: 0;}
+
+        #뿌리 { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; background-color: lightgreen; }
+    </style>
 </head>
 
 <body>
-    <ul id="list">
-        <li>아이템-1</li>
-        <li>아이템-2</li>
-        <li>아이템-3</li>
-        <li>아이템-4</li>
-        <li>아이템-5</li>
-    </ul>
+    <div id="뿌리"></div>
 </body>
 <script>
-    const list = document.getElementById('list');
-    function 리스트전체요소를초록색으로() {
-        for (let i = 0; i < list.children.length; i++) {
-            list.children[i].style.backgroundColor = "green";
+    const 뿌리 = document.getElementById('뿌리');
+
+    class 요소생성 {
+        constructor(부모, 요소명, 높이, 넓이, 색갈) {
+            this.부모 = 부모;
+            this.요소명 = 요소명;
+            this.높이 = 높이;
+            this.넓이 = 넓이;
+            this.색갈 = 색갈;
+
+            const 요소 = document.createElement(요소명);
+            요소.style.width = 넓이 + 'vw';
+            요소.style.height = 높이 + 'vh';
+            요소.style.backgroundColor = 색갈;
+            return 부모.appendChild(요소);
         }
     }
-    // 리스트전체요소를초록색으로()
+    const 디브 = new 요소생성(뿌리, 'div', 45, 90, 'darkgreen');
 
-    function 홀수는흰색짝수는검은색() {
-        for (let i = 0; i < list.children.length; i++) {
-            if (i % 2 !== 0) {
-                list.children[i].style.backgroundColor = "black";
-                list.children[i].style.color = "white";
-            } else {
-                list.children[i].style.backgroundColor = "white";
-                list.children[i].style.color = "black";
-            }
-        }
-    } 
-    // 홀수는흰색짝수는검은색()
-
-    function 아이템숫자로크기정하기() {
-        for(let i=0; i<list.children.length; i++){
-            list.children[i].style.fontSize = i+1+'vh';
-        }
-    }
-    아이템숫자로크기정하기()
 
 </script>
 
