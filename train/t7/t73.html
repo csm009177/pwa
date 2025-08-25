@@ -6,14 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        #root { background-color: black; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #root {
+            background-color: black;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
 <body>
     <div id="root"></div>
     <script>
+        const 뿌리 = document.getElementById('root');
         const htmlData = {
             tags: ["div", "h1", "p", "span", "button", "input", "img", "a"],
             colors: ["red", "blue", "green", "yellow", "purple", "orange", "pink", "black"],
@@ -24,26 +37,25 @@
             fonts: ["Arial", "Georgia", "Times", "Helvetica", "Verdana"],
             weights: [100, 200, 300, 400, 500, 600, 700, 800, 900]
         };
-        const 뿌리 = document.getElementById('root');
-
 
         class 요소 {
-            태그 = 'div';
-            색갈 = 'green';
-            크기 = '16';
-        }
-        const 디브 = new 요소
-        console.log(디브);
+            constructor(부모태그, 받은태그, 받은색갈, 받은크기) {
+                this.부모 = 부모태그;
+                this.태그 = 받은태그;
+                this.색갈 = 받은색갈;
+                this.크기 = 받은크기;
 
-        function 클래스로만들어진디브를렌더링(){
-            const 초록16디브 = document.createElement(디브.태그);
-            초록16디브.style.width = 디브.크기+'px';
-            초록16디브.style.height = 디브.크기+'px';
-            초록16디브.style.backgroundColor = 디브.색갈;
-            뿌리.appendChild(초록16디브);
+                this.요소 = document.createElement(this.태그);
+                this.요소.style.backgroundColor = this.색갈;
+                this.요소.style.width = this.크기 + 'px';
+                this.요소.style.height = this.크기 + 'px';
+                this.부모.appendChild(this.요소);
+            }
         }
-        클래스로만들어진디브를렌더링();
 
+        new 요소(뿌리, "div", "green", 100);
+        new 요소(뿌리, "div", "red", 150);
+        new 요소(뿌리, "div", "blue", 200);
 
 
     </script>
