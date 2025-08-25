@@ -46,5 +46,19 @@ function 가장비싼메뉴출력(){
     }
     return { 메뉴: 최고비싼메뉴, 가격 : 최고비싼가격};    
 }
-const 결과 = 가장비싼메뉴출력()
-console.log(결과.메뉴,':', 결과.가격)
+// const 결과 = 가장비싼메뉴출력()
+// console.log(결과.메뉴,':', 결과.가격)
+
+function 가장싼메뉴출력(){
+    let 가장싼가격 = 결과.가격;
+    let 가장싼메뉴 = '';
+    for(let i=0; i<lunchData.prices.length; i++){
+        if(lunchData.prices[i]<가장싼가격 && 가장싼가격!==0){
+            가장싼가격 = lunchData.prices[i];
+            가장싼메뉴 = lunchData.menus[i];
+        }
+    }
+    return console.log(가장싼메뉴, 가장싼가격);
+}
+// 가장싼메뉴출력()
+
