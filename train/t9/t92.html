@@ -69,6 +69,13 @@
     }
     new 버튼생성('버튼박스', '초기화', 초기화);
 
+    function 디브생성(높이, 넓이, 색갈){
+        const 표현박스 = document.getElementsByClassName('표현박스')[0];
+        표현박스.appendChild(new 요소생성('표현박스', 'div', 높이, 넓이, 색갈, { class: '디브' }));
+    }
+    new 버튼생성('버튼박스', '디브생성', () => 디브생성(10, 10, 'gray'));
+
+
 </script>
 
 </html>
