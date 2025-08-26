@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 
 export default function Input() {
-    const [value, setValue] = useState('');
+    const [id, setId] = useState('');
+    const [pw, setPw] = useState('');
 
-    const handleChange = (e) => setValue(e.target.value);
+    const handleIdChange = (e) => setId(e.target.value);
+    const handlePwChange = (e) => setPw(e.target.value);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -11,11 +13,12 @@ export default function Input() {
             const response = await fetch('http://localhost:8080/api/message', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: value }),
+                body: JSON.stringify({ id, pw }),
             });
             if (response.ok) {
                 alert('저장 성공!');
-                setValue('');
+                setId('');
+                setPw('');
             } else {
                 alert('저장 실패');
             }
@@ -28,9 +31,15 @@ export default function Input() {
         <form onSubmit={handleSubmit}>
             <input
                 type="text"
-                value={value}
-                onChange={handleChange}
-                placeholder="메시지를 입력하세요"
+                value={id}
+                onChange={handleIdChange}
+                placeholder="아이디를 입력하세요"
+            />
+            <input
+                type="password"
+                value={pw}
+                onChange={handlePwChange}
+                placeholder="비밀번호를 입력하세요"
             />
             <button type="submit">전송</button>
         </form>
