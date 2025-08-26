@@ -11,7 +11,9 @@ export class FormService {
     const dir = path.dirname(this.filePath);
     try {
       await fs.mkdir(dir, { recursive: true });
-    } catch {}
+    } catch {
+      // Ignore directory creation errors
+    }
     try {
       const file = await fs.readFile(this.filePath, 'utf-8');
       arr = JSON.parse(file);

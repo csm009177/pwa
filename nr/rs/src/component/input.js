@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 
 export default function Input() {
-    const [id, setId] = useState('');
-    const [pw, setPw] = useState('');
+    const [form, setForm] = useState({ id: '', pw: '' });
 
-    const handleIdChange = (e) => setId(e.target.value);
-    const handlePwChange = (e) => setPw(e.target.value);
+    const handleChange = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:8080/api/message', {
+            const res = await fetch('http://localhost:8080/api/message', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id, pw }),
+                body: JSON.stringify(form),
             });
-            if (response.ok) {
+            if (res.ok) {
                 alert('저장 성공!');
-                setId('');
-                setPw('');
+                setForm({ id: '', pw: '' });
             } else {
                 alert('저장 실패');
             }
@@ -30,16 +29,17 @@ export default function Input() {
     return (
         <form onSubmit={handleSubmit}>
             <input
-                type="text"
-                value={id}
-                onChange={handleIdChange}
-                placeholder="아이디를 입력하세요"
+                name="id"
+                value={form.id}
+                onChange={handleChange}
+                placeholder="아이디"
             />
             <input
+                name="pw"
                 type="password"
-                value={pw}
-                onChange={handlePwChange}
-                placeholder="비밀번호를 입력하세요"
+                value={form.pw}
+                onChange={handleChange}
+                placeholder="비밀번호"
             />
             <button type="submit">전송</button>
         </form>
