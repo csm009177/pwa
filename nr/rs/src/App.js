@@ -1,15 +1,12 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Hello from "./components/hello";
-import Input from "./components/input";
 import MainLayout from "./layouts/mainLayout";
+import Main from "./pages/main";
 
 function App() {
   return (
     <>
       <MainLayout>
-        <Hello />
-        <Input />
+        <Main />
       </MainLayout>
     </>
   );
