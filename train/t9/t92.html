@@ -83,6 +83,14 @@
     }
     new 버튼생성('버튼박스', '빨간색', () => 모든디브색상변경('red'));
 
+    function 생성된디브숫자적어주기(){
+        const 표현박스 = document.getElementsByClassName('표현박스')[0];
+        for(let i=0; i<표현박스.children.length; i++){
+            표현박스.children[i].textContent = i+1;
+        }
+    }
+    new 버튼생성('버튼박스', '숫자', 생성된디브숫자적어주기);
+
 </script>
 
 </html>
