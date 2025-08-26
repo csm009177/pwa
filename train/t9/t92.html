@@ -34,10 +34,15 @@
         constructor(부모클래스, 요소명, 높이, 넓이, 색갈, 속성) {
             const 요소 = document.createElement(요소명);
             let 부모;
-            if (부모클래스 === '#뿌리') {
-                부모 = document.getElementById('뿌리');
+            if (typeof 부모클래스 === 'string') {
+                if (부모클래스 === '#뿌리') {
+                    부모 = document.getElementById('뿌리');
+                } else {
+                    부모 = document.getElementsByClassName(부모클래스)[0];
+                }
             } else {
-                부모 = document.getElementsByClassName(부모클래스)[0];
+                // DOM 객체가 직접 들어온 경우
+                부모 = 부모클래스;
             }
             for (const key in 속성) {
                 if (key === 'style') {
@@ -90,6 +95,15 @@
         }
     }
     new 버튼생성('버튼박스', '숫자', 생성된디브숫자적어주기);
+
+    function 디브안에버튼만들기(){
+        const 표현박스 = document.getElementsByClassName('표현박스')[0];
+        for(let i=0; i<표현박스.children.length; i++){
+            new 버튼생성(표현박스.children[i], '디브안에버튼'+i+1)
+        }
+    }
+    new 버튼생성('버튼박스', '디브안에버튼', 디브안에버튼만들기)
+
 
 </script>
 
