@@ -1,12 +1,16 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Hello from "./component/hello";
-import Input from "./component/input";
+import Hello from "./components/hello";
+import Input from "./components/input";
+import MainLayout from "./layouts/mainLayout";
 
 function App() {
   return (
-    <><Hello />
-    <Input/>
+    <>
+      <MainLayout>
+        <Hello />
+        <Input />
+      </MainLayout>
     </>
   );
 }
