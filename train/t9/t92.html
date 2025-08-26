@@ -74,35 +74,55 @@
     }
     new 버튼생성('버튼박스', '초기화', 초기화);
 
-    function 디브생성(높이, 넓이, 색갈){
+    function 디브생성(높이, 넓이, 색갈) {
         const 표현박스 = document.getElementsByClassName('표현박스')[0];
         표현박스.appendChild(new 요소생성('표현박스', 'div', 높이, 넓이, 색갈, { class: '디브' }));
     }
     new 버튼생성('버튼박스', '디브생성', () => 디브생성(10, 10, 'gray'));
 
-    function 모든디브색상변경(색상){
+    function 모든디브색상변경(색상) {
         const 표현박스 = document.getElementsByClassName('표현박스')[0];
-        for(let i=0; i<표현박스.children.length; i++){
+        for (let i = 0; i < 표현박스.children.length; i++) {
             표현박스.children[i].style.backgroundColor = 색상;
         }
     }
     new 버튼생성('버튼박스', '빨간색', () => 모든디브색상변경('red'));
 
-    function 생성된디브숫자적어주기(){
+    function 생성된디브숫자적어주기() {
         const 표현박스 = document.getElementsByClassName('표현박스')[0];
-        for(let i=0; i<표현박스.children.length; i++){
-            표현박스.children[i].textContent = i+1;
+        for (let i = 0; i < 표현박스.children.length; i++) {
+            표현박스.children[i].textContent = i + 1;
         }
     }
     new 버튼생성('버튼박스', '숫자', 생성된디브숫자적어주기);
 
-    function 디브안에버튼만들기(){
+    function 디브안에버튼만들기() {
         const 표현박스 = document.getElementsByClassName('표현박스')[0];
-        for(let i=0; i<표현박스.children.length; i++){
-            new 버튼생성(표현박스.children[i], '디브안에버튼'+i+1)
+        for (let i = 0; i < 표현박스.children.length; i++) {
+            new 버튼생성(표현박스.children[i], '디브안에버튼' + i + 1)
         }
     }
     new 버튼생성('버튼박스', '디브안에버튼', 디브안에버튼만들기)
+
+    function 디브들의현재색갈기준으로색상변경() {
+        let 클릭횟수 = 0;
+        const 표현박스 = document.getElementsByClassName('표현박스')[0];
+        for (let i = 0; i < 표현박스.children.length; i++) {
+            const div = 표현박스.children[i];
+            // 실제 적용된 색상값을 가져옴
+            const 현재색상 = getComputedStyle(div).backgroundColor;
+            const 색갈매치 = 현재색상.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+            클릭횟수++;
+            if (색갈매치){
+                let [_, r, g, b] = 색갈매치;
+                r = (parseInt(r) + 클릭횟수 * 20) % 256;
+                g = (parseInt(g) + 클릭횟수 * 15) % 256;
+                b = (parseInt(b) + 클릭횟수 * 10) % 256;
+                div.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            }
+        }
+    }
+    new 버튼생성('버튼박스', '현재색상기준변경', 디브들의현재색갈기준으로색상변경);
 
 
 </script>
