@@ -16,8 +16,17 @@ function htmlMaker(받은문서) {
   ${받은문서.body.end}
   ${받은문서.htmlTag.end}
 `;
-  fs.writeFileSync("index.html", result);
+  fs.writeFileSync(__dirname + '/' + "index.html", result);
   return result;
 }
 
 htmlMaker(htmlDocument);
+
+function htmlreader(){
+    const data = fs.readFileSync("index.html", "utf-8");
+    console.log(data);
+    console.log('http://127.0.0.1:5500/index.html');
+
+}
+
+htmlreader();
