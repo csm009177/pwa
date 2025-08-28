@@ -14,6 +14,14 @@
 // * 거의 대부분 for(), if(), while() 들의 조합이다. 많이 쓰는 것들 위주로 구성되어
 // * 더 빠르고 경쾌한 프로그래밍을 할 수 있는 '고수준' 언어로서 변모한다.
 
-console.log(Object.getOwnPropertyNames(Array.prototype));
+// console.log(Object.getOwnPropertyNames(Array.prototype));
 // 콘솔.기록(객체.자신의속성이름들얻기(배열.원형));
 // 원형들의 배열이라는 객체에서 자신의 속성들의 이름을 콘솔로그에 기록하기
+// console.log(Object)
+// console.log(typeof(Object));
+// console.log(Object.getOwnPropertyNames(Object));
+// console.log(Object.getOwnPropertyNames(Object.keys));
+// console.log(Object.getOwnPropertyNames(Object.values));
+// console.log(Object.getOwnPropertyNames(typeof(length)));
+// console.log(Object.getOwnPropertyNames(typeof(name)));
+
