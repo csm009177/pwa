@@ -24,4 +24,4 @@
 // console.log(Object.getOwnPropertyNames(Object.values));
 // console.log(Object.getOwnPropertyNames(typeof(length)));
 // console.log(Object.getOwnPropertyNames(typeof(name)));
-
+console.log(new Object);
